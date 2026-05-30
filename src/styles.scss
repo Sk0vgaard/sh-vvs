@@ -1,3 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../theme.css';
 
-@import 'tailwindcss';
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  body {
+    @apply font-sans text-ink-500 bg-surface antialiased;
+  }
+}

@@ -1,0 +1,52 @@
+<div
+  class="fixed inset-0 z-[var(--z-overlay)] bg-[var(--overlay)] transition-opacity duration-300 lg:hidden"
+  [class.hidden]="!open()"
+  [class.opacity-0]="!open()"
+  [class.pointer-events-none]="!open()"
+  (click)="closeDrawer.emit()"
+></div>
+
+<aside
+  id="drawer"
+  class="fixed right-0 top-0 z-[var(--z-drawer)] flex h-full w-72 max-w-[80%] flex-col bg-surface shadow-drawer transition-transform duration-300 ease-decelerate lg:hidden"
+  [class.translate-x-full]="!open()"
+  [attr.aria-hidden]="!open()"
+>
+  <div class="flex items-center justify-between px-5 py-4">
+    <span class="text-lg font-extrabold text-ink-900">S<span class="text-brand">&amp;</span>H</span>
+    <button
+      type="button"
+      class="inline-flex size-11 items-center justify-center rounded-md text-ink-900 hover:bg-[var(--hover-overlay)]"
+      aria-label="Luk menu"
+      (click)="closeDrawer.emit()"
+    >
+      <svg
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-1 flex-col px-2">
+    @for (link of navLinks(); track link.label) {
+      <a
+        [href]="link.href"
+        class="drawer-link"
+        [class.!font-semibold]="link.active"
+        [class.!text-brand]="link.active"
+        (click)="navLinkClick.emit({ link, event: $event })"
+      >
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+  <div class="p-4">
+    <a [href]="phoneHref()" class="btn btn-primary">{{ phoneLabel() }}</a>
+  </div>
+</aside>

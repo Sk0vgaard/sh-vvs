@@ -1,0 +1,20 @@
+<article class="card text-center">
+  <ng-content select="[icon]"></ng-content>
+  <h3 class="mt-4 min-h-12 text-h3 text-ink-900">{{ title() }}</h3>
+  <p class="mt-2 flex-1 text-body text-ink-500">{{ description() }}</p>
+  <a [href]="href()" class="btn-link mt-4 justify-center">
+    Læs mere
+    <svg
+      class="size-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  </a>
+</article>

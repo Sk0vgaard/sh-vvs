@@ -1,0 +1,66 @@
+<header class="sticky top-0 z-[var(--z-sticky-nav)] bg-surface shadow-navbar">
+  <nav class="shell flex items-center justify-between py-4">
+    <sh-logo (logoClick)="logoClick.emit($event)" />
+
+    <ul class="hidden items-center gap-7 lg:flex">
+      @for (link of navLinks(); track link.label) {
+        <li>
+          <a
+            [href]="link.href"
+            class="text-sm font-medium pb-1"
+            [class.border-b-2]="link.active"
+            [class.border-brand]="link.active"
+            [class.text-brand]="link.active"
+            [class.nav-link]="!link.active"
+            (click)="navLinkClick.emit({ link, event: $event })"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a
+        [href]="phoneHref()"
+        class="btn btn-primary btn-sm shrink-0 gap-1.5 px-2.5 py-1.5 text-xs font-medium sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm sm:font-semibold"
+      >
+        <svg
+          class="size-3.5 shrink-0 sm:size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92Z"
+          />
+        </svg>
+        <span>{{ phoneLabel() }}</span>
+      </a>
+      <button
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-md text-ink-900 hover:bg-[var(--hover-overlay)] focus-visible:outline-2 focus-visible:outline-offset-2 outline-focus-ring lg:hidden"
+        aria-label="Åbn menu"
+        aria-controls="drawer"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="menuOpenClick.emit()"
+      >
+        <svg
+          class="size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>

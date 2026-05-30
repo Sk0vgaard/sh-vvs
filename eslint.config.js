@@ -9,7 +9,7 @@ const importPlugin = require('eslint-plugin-import');
 const prettierRecommended = require('eslint-plugin-prettier/recommended');
 
 /** Must match `prefix` in angular.json */
-const APP_PREFIX = 'app';
+const APP_PREFIX = 'sh';
 
 const tsconfigRootDir = __dirname;
 

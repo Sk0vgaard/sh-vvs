@@ -1,0 +1,17 @@
+<sh-navbar
+  [menuOpen]="nav.open()"
+  [navLinks]="navLinks"
+  [phoneHref]="contact.phoneHref"
+  [phoneLabel]="contact.phoneLabel"
+  (menuOpenClick)="nav.openDrawer()"
+  (logoClick)="onLogoClick($event)"
+  (navLinkClick)="onNavLinkClick($event)"
+/>
+<sh-mobile-drawer
+  [open]="nav.open()"
+  [navLinks]="navLinks"
+  [phoneHref]="contact.phoneHref"
+  [phoneLabel]="contact.phoneLabel"
+  (closeDrawer)="nav.closeDrawer()"
+  (navLinkClick)="onNavLinkClick($event, true)"
+/>

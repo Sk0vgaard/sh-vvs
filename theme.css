@@ -1,0 +1,252 @@
+/* =============================================================================
+ * theme.css — Tailwind v4 theme for Skovgaard & Heide VVS
+ * Generated from DESIGN.md (design-tokens/v1). Tokens are the source of truth.
+ * Tailwind v4 is CSS-first: this @theme block replaces tailwind.config.js.
+ * ---------------------------------------------------------------------------
+ * Usage:  import this file once at your app entry (e.g. main.ts / app.css).
+ * Then use utilities like: bg-navy-900, text-brand, rounded-lg, shadow-card,
+ * text-display-xl, ease-standard, etc.
+ * ========================================================================== */
+
+@import "tailwindcss";
+
+@theme {
+  /* ---- Breakpoints ----
+   * Identical to Tailwind defaults (sm 640 / md 768 / lg 1024 / xl 1280),
+   * so no override is needed. Listed here only for documentation. */
+
+  /* ---- Fonts ---- */
+  --font-sans: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter", sans-serif;
+
+  /* ---- Color: brand ---- */
+  --color-brand: #1A6DF0;
+  --color-brand-hover: #1559C7;
+  --color-brand-tint: #E8F1FE;
+
+  /* ---- Color: navy (dark surfaces) ---- */
+  --color-navy-900: #0A1E3F;
+  --color-navy-800: #0F2549;
+  --color-navy-700: #16315C;
+  --color-navy-muted: #AEBCCD;
+
+  /* ---- Color: ink (light-mode text ramp) ---- */
+  --color-ink-900: #0F1B2D;
+  --color-ink-700: #2B3A4D;
+  --color-ink-500: #5B6B7B;
+  --color-ink-400: #8A98A6;
+
+  /* ---- Color: surface ---- */
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F6F8;
+  --color-border: #E6EAEF;
+  --color-border-strong: #CDD5DE;
+
+  /* ---- Color: text-on ---- */
+  --color-on-primary: #FFFFFF;
+  --color-on-dark: #FFFFFF;
+
+  /* ---- Color: feedback (UNVERIFIED — confirm with brand) ---- */
+  --color-success: #1FA971;
+  --color-success-bg: #E7F6EF;
+  --color-warning: #E0A100;
+  --color-warning-bg: #FBF3DC;
+  --color-danger: #D7373F;
+  --color-danger-bg: #FBE9EA;
+  --color-info: #1A6DF0;
+  --color-info-bg: #E8F1FE;
+
+  /* ---- Color: state ---- */
+  --color-disabled-bg: #EEF1F4;
+  --color-disabled-text: #A6B0BC;
+  --color-focus-ring: #1A6DF0;
+  --color-focus-ring-dark: #5C9CFF;
+
+  /* ---- Color: form ---- */
+  --color-field-bg: #FFFFFF;
+  --color-field-border: #CDD5DE;
+  --color-field-border-focus: #1A6DF0;
+  --color-placeholder: #8A98A6;
+
+  /* ---- Font sizes (fluid) ----
+   * Tailwind v4 reads --text-*, --text-*--line-height, --text-*--font-weight,
+   * --text-*--letter-spacing. Big headings use clamp() to scale mobile→desktop. */
+  --text-eyebrow: 0.8125rem;            /* 13px */
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--font-weight: 700;
+  --text-eyebrow--letter-spacing: 0.12em;
+
+  --text-display-xl: clamp(2rem, 6vw, 3.25rem);   /* 32 → 52px */
+  --text-display-xl--line-height: 1.1;
+  --text-display-xl--font-weight: 800;
+  --text-display-xl--letter-spacing: -0.02em;
+
+  --text-h2: clamp(1.625rem, 4vw, 2.125rem);      /* 26 → 34px */
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 700;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: 1.125rem;                  /* 18px */
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 700;
+
+  --text-body-lg: 1.0625rem;            /* 17px */
+  --text-body-lg--line-height: 1.6;
+
+  --text-body: 0.9375rem;               /* 15px */
+  --text-body--line-height: 1.6;
+
+  --text-link: 0.875rem;                /* 14px */
+  --text-link--line-height: 1.4;
+  --text-link--font-weight: 600;
+
+  /* ---- Radius ----
+   * Omitted on purpose: design sm/md/lg (4/6/8px) already equal Tailwind v4
+   * defaults. Use rounded-sm / rounded-md / rounded-lg; rounded-full for pill. */
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 1px 2px rgba(15, 27, 45, 0.04), 0 4px 16px rgba(15, 27, 45, 0.05);
+  --shadow-card-hover: 0 4px 12px rgba(15, 27, 45, 0.08), 0 12px 28px rgba(15, 27, 45, 0.08);
+  --shadow-button: 0 2px 8px rgba(26, 109, 240, 0.25);
+  --shadow-navbar: 0 1px 0 rgba(15, 27, 45, 0.06);
+  --shadow-drawer: 0 8px 40px rgba(10, 30, 63, 0.25);
+  --shadow-popover: 0 6px 24px rgba(15, 27, 45, 0.14);
+
+  /* ---- Easing (durations use defaults: duration-150 / 200 / 300) ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0, 1);
+  --ease-accelerate: cubic-bezier(0.3, 0, 1, 1);
+}
+
+/* =============================================================================
+ * Non-theme tokens (no Tailwind namespace). Reference with var() or
+ * arbitrary utilities, e.g. z-[var(--z-modal)] or bg-[var(--overlay)].
+ * ========================================================================== */
+:root {
+  /* Scrims / overlays */
+  --overlay: rgba(10, 30, 63, 0.55);        /* modal / drawer scrim */
+  --hover-overlay: rgba(15, 27, 45, 0.04);  /* subtle row/card hover */
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-sticky-nav: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+  --z-drawer: 310;
+  --z-modal: 320;
+  --z-toast: 400;
+  --z-tooltip: 500;
+
+  /* Touch */
+  --tap-min: 44px;
+}
+
+/* =============================================================================
+ * Component classes — organized by Atomic Design level (see DESIGN.md §5).
+ * Default-scale utilities preferred: min-h-11 (44px), px-6/py-3, rounded-*,
+ * duration-200 — arbitrary values only for genuine brand one-offs.
+ * Mobile-first: full-width buttons below sm, inline from sm up.
+ * ========================================================================== */
+@layer components {
+
+  /* ----------------------------------------------------------------- ATOMS */
+
+  /* Button */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 w-full sm:w-auto
+           min-h-11 px-6 py-3
+           rounded-md font-semibold text-base sm:text-sm
+           transition-colors duration-200 ease-standard
+           focus-visible:outline-2 focus-visible:outline-offset-2 outline-focus-ring
+           disabled:bg-disabled-bg disabled:text-disabled-text
+           disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-brand text-on-primary
+           hover:bg-brand-hover hover:shadow-button
+           active:bg-brand-hover active:translate-y-px;
+  }
+  /* Secondary is designed for navy backgrounds (hero) */
+  .btn-secondary {
+    @apply bg-transparent text-on-dark border border-border-strong
+           hover:border-white outline-focus-ring-dark;
+  }
+  /* Compact modifier (e.g. the navbar phone CTA) */
+  .btn-sm {
+    @apply w-auto min-h-0 px-4 py-2.5;
+  }
+
+  /* Link */
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 w-auto p-0 min-h-0
+           text-link text-brand transition-transform hover:underline;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-eyebrow uppercase text-brand;
+  }
+
+  /* Form control (input / textarea / select) */
+  .field {
+    @apply w-full min-h-11 px-3 py-3
+           text-base text-ink-900 bg-field-bg
+           border border-field-border rounded-sm
+           placeholder:text-placeholder
+           focus:border-field-border-focus
+           focus-visible:outline-2 focus-visible:outline-offset-1 outline-focus-ring
+           disabled:bg-disabled-bg disabled:text-disabled-text;
+  }
+  .field-error {
+    @apply border-danger focus:border-danger;
+  }
+  .field-label {
+    @apply block mb-1.5 text-sm font-semibold text-ink-700;
+  }
+
+  /* ------------------------------------------------------------- MOLECULES */
+
+  /* Service / feature card */
+  .card {
+    @apply flex h-full flex-col bg-surface border border-border rounded-lg p-6 shadow-card
+           transition-shadow duration-200 ease-standard hover:shadow-card-hover;
+  }
+
+  /* Form field group (label + control + help) */
+  .field-group {
+    @apply flex flex-col gap-1.5;
+  }
+
+  /* Nav item (desktop) */
+  .nav-link {
+    @apply text-sm font-medium text-ink-700 hover:text-brand;
+  }
+
+  /* Nav item (mobile drawer) */
+  .drawer-link {
+    @apply flex min-h-11 items-center rounded-md px-3 text-base font-medium
+           text-ink-700 hover:bg-[var(--hover-overlay)];
+  }
+
+  /* ------------------------------------------------------------- TEMPLATES */
+
+  /* Centered page container with responsive gutters */
+  .shell {
+    @apply mx-auto w-full max-w-[1180px] px-4 md:px-6 lg:px-10;
+  }
+
+  /* Full-bleed vertical section rhythm */
+  .section-y {
+    @apply py-16 lg:py-20;
+  }
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,11 @@
+<sh-app-header-container />
+<main>
+  <sh-home-banner (sectionNavigate)="scrollToSection($event)" />
+  <sh-services-list-container />
+</main>
+<sh-footer
+  [phoneHref]="contact.phoneHref"
+  [phoneLabel]="contact.phoneLabel"
+  [emailHref]="contact.emailHref"
+  [emailLabel]="contact.emailLabel"
+/>
