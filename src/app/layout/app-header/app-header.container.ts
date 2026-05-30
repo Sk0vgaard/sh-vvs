@@ -1,11 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
 
 import { MobileNavState } from '../../core/services/mobile-nav.state';
 import { CONTACT } from '../../shared/data/contact.data';
 import { isHomePath } from '../../shared/data/home-sections';
 import { NAV_LINKS } from '../../shared/data/nav-links';
-import { type NavLink } from '../../shared/models/nav-link.model';
+import { type NavLink, withActiveNavLinks } from '../../shared/models/nav-link.model';
 import { MobileDrawerComponent } from '../../shared/ui/mobile-drawer/mobile-drawer.component';
 import { NavbarComponent } from '../../shared/ui/navbar/navbar.component';
 
@@ -19,8 +21,18 @@ export class AppHeaderContainer {
   private readonly router = inject(Router);
 
   protected readonly nav = inject(MobileNavState);
-  protected readonly navLinks = NAV_LINKS;
   protected readonly contact = CONTACT;
+
+  private readonly currentPath = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => event.urlAfterRedirects.split('?')[0]),
+      startWith(this.router.url.split('?')[0])
+    ),
+    { initialValue: this.router.url.split('?')[0] }
+  );
+
+  protected readonly navLinks = computed(() => withActiveNavLinks(this.currentPath(), NAV_LINKS));
 
   protected onLogoClick(event: MouseEvent): void {
     if (!isHomePath(this.router.url)) {
@@ -47,6 +59,6 @@ export class AppHeaderContainer {
   }
 
   private shouldHandleInApp(link: NavLink): boolean {
-    return isHomePath(this.router.url) && (link.active === true || !!link.sectionId);
+    return isHomePath(this.router.url) && (link.id === 'home' || !!link.sectionId);
   }
 }

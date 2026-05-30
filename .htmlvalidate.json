@@ -1,0 +1,7 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-case": ["error", { "style": ["lowercase", "camelcase"] }],
+    "no-self-closing": "off"
+  }
+}

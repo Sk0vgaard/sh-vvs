@@ -1,6 +1,6 @@
 <sh-navbar
   [menuOpen]="nav.open()"
-  [navLinks]="navLinks"
+  [navLinks]="navLinks()"
   [phoneHref]="contact.phoneHref"
   [phoneLabel]="contact.phoneLabel"
   (menuOpenClick)="nav.openDrawer()"
@@ -9,7 +9,7 @@
 />
 <sh-mobile-drawer
   [open]="nav.open()"
-  [navLinks]="navLinks"
+  [navLinks]="navLinks()"
   [phoneHref]="contact.phoneHref"
   [phoneLabel]="contact.phoneLabel"
   (closeDrawer)="nav.closeDrawer()"
