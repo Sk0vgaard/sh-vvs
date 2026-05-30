@@ -42,3 +42,15 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase secrets and local env (never commit)
+.env
+.env.*
+!.env.example
+src/app/core/firebase.secrets.ts
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*-firebase-adminsdk-*.json
+*serviceAccount*.json

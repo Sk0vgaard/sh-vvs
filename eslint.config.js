@@ -55,6 +55,7 @@ const nodeRestrictedImports = {
 };
 
 /** Shared TypeScript rules (ported from your legacy .eslintrc) */
+/** @type {import('eslint').Linter.RulesRecord} */
 const tsRules = {
   // @typescript-eslint/lines-between-class-members was removed in typescript-eslint v8
   'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
@@ -101,7 +102,15 @@ const tsRules = {
 
 module.exports = defineConfig([
   {
-    ignores: ['dist/**', 'coverage/**', 'node_modules/**', '.angular/**', 'projects/**/*', 'mocks/**/*'],
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      'node_modules/**',
+      '.angular/**',
+      'projects/**/*',
+      'mocks/**/*',
+      'src/app/core/firebase.secrets.ts',
+    ],
   },
   {
     files: ['**/*.ts'],
