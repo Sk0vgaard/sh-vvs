@@ -8,6 +8,7 @@ import { CONTACT } from '../../shared/data/contact.data';
 import { isHomePath } from '../../shared/data/home-sections';
 import { NAV_LINKS } from '../../shared/data/nav-links';
 import { type NavLink, withActiveNavLinks } from '../../shared/models/nav-link.model';
+import { isScrollSectionId, SectionId } from '../../shared/models/section-id';
 import { MobileDrawerComponent } from '../../shared/ui/mobile-drawer/mobile-drawer.component';
 import { NavbarComponent } from '../../shared/ui/navbar/navbar.component';
 
@@ -59,6 +60,6 @@ export class AppHeaderContainer {
   }
 
   private shouldHandleInApp(link: NavLink): boolean {
-    return isHomePath(this.router.url) && (link.id === 'home' || !!link.sectionId);
+    return isHomePath(this.router.url) && (link.id === SectionId.Home || isScrollSectionId(link.id));
   }
 }

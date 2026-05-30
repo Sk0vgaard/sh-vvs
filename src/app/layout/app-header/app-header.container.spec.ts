@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
+import { routes } from '../../app.routes';
 import { MobileNavState } from '../../core/services/mobile-nav.state';
-import { HomeComponent } from '../../pages/home/home.component';
 import { AppHeaderContainer } from './app-header.container';
 
 describe('AppHeaderContainer', () => {
@@ -13,13 +13,7 @@ describe('AppHeaderContainer', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppHeaderContainer],
-      providers: [
-        provideRouter([
-          { path: '', component: HomeComponent },
-          { path: 'services', component: HomeComponent },
-          { path: 'contact', component: HomeComponent },
-        ]),
-      ],
+      providers: [provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppHeaderContainer);
@@ -29,8 +23,9 @@ describe('AppHeaderContainer', () => {
   });
 
   it('opens the drawer from the menu button', () => {
-    const button = fixture.nativeElement.querySelector('[aria-label="Åbn menu"]') as HTMLButtonElement;
-    button.click();
+    const button = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('[aria-label="Åbn menu"]');
+    expect(button).not.toBeNull();
+    button!.click();
 
     expect(nav.open()).toBe(true);
   });
@@ -39,8 +34,9 @@ describe('AppHeaderContainer', () => {
     await router.navigateByUrl('/services');
     const navigateSpy = vi.spyOn(router, 'navigateByUrl');
 
-    const logoLink = fixture.nativeElement.querySelector('sh-logo a') as HTMLAnchorElement;
-    logoLink.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    const logoLink = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>('sh-logo a');
+    expect(logoLink).not.toBeNull();
+    logoLink!.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
 
     expect(navigateSpy).toHaveBeenCalledWith('/');
   });

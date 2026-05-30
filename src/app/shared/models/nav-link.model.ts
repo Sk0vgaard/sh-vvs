@@ -1,9 +1,10 @@
+import { isScrollSectionId, SectionId } from './section-id';
+
 export interface NavLink {
-  id: string;
+  id: SectionId;
   label: string;
   href: string;
   active?: boolean;
-  sectionId?: string;
 }
 
 export function withActiveNavLinks(path: string, links: NavLink[]): NavLink[] {
@@ -16,11 +17,11 @@ export function withActiveNavLinks(path: string, links: NavLink[]): NavLink[] {
 }
 
 function isNavLinkActive(path: string, link: NavLink): boolean {
-  if (link.sectionId) {
+  if (isScrollSectionId(link.id)) {
     return path === link.href;
   }
 
-  if (link.id === 'home') {
+  if (link.id === SectionId.Home) {
     return path === '/';
   }
 

@@ -7,6 +7,7 @@ import { PageNavigationService } from '../../core/services/page-navigation.servi
 import { AppHeaderContainer } from '../../layout/app-header/app-header.container';
 import { CONTACT } from '../../shared/data/contact.data';
 import { pathForSectionId, sectionIdForPath } from '../../shared/data/home-sections';
+import { type ScrollSectionId } from '../../shared/models/section-id';
 import { FooterComponent } from '../../shared/ui/footer/footer.component';
 import { HomeBannerComponent } from './components/home-banner/home-banner.component';
 import { ServicesListContainer } from './containers/services-list/services-list.container';
@@ -34,11 +35,8 @@ export class HomeComponent {
     afterNextRender(() => this.syncScrollToRoute(this.router.url, true));
   }
 
-  protected scrollToSection(sectionId: string): void {
-    const path = pathForSectionId(sectionId);
-    if (path) {
-      void this.router.navigateByUrl(path);
-    }
+  protected scrollToSection(sectionId: ScrollSectionId): void {
+    void this.router.navigateByUrl(pathForSectionId(sectionId));
   }
 
   private syncScrollToRoute(url: string, isInitial = false): void {
