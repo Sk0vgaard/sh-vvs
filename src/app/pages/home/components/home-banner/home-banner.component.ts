@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
+import { FaIconComponent } from '../../../../core/fontawesome';
 import { HOME_SECTIONS } from '../../../../shared/data/home-sections';
 import { type ScrollSectionId, SectionId } from '../../../../shared/models/section-id';
 
 @Component({
   selector: 'sh-home-banner',
+  imports: [FaIconComponent],
   templateUrl: './home-banner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

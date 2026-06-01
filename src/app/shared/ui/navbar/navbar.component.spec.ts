@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { registerFaIconsForTesting } from '../../../core/fontawesome.testing';
 import { NAV_LINKS } from '../../data/nav-links';
 import { NavbarComponent } from './navbar.component';
 
@@ -10,6 +11,8 @@ describe('NavbarComponent', () => {
     await TestBed.configureTestingModule({
       imports: [NavbarComponent],
     }).compileComponents();
+
+    registerFaIconsForTesting();
 
     fixture = TestBed.createComponent(NavbarComponent);
     fixture.componentRef.setInput('navLinks', NAV_LINKS);

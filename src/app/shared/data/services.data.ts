@@ -22,3 +22,19 @@ export const SERVICES: ServiceItem[] = [
     description: 'Vi tilbyder løsninger til erhverv – stort som småt.',
   },
 ];
+
+/** Shorter grouped cards shown only below the `sm` breakpoint. */
+export const MOBILE_SERVICES: ServiceItem[] = [
+  {
+    title: 'Installation & varme',
+    description: 'VVS-installation, varmeanlæg og fjernvarme.',
+  },
+  {
+    title: 'Badeværelser',
+    description: 'Funktionelle og stilrene badeværelser efter dine ønsker.',
+  },
+  {
+    title: 'Service & erhverv',
+    description: 'Hurtig reparation og løsninger til private og erhverv.',
+  },
+];

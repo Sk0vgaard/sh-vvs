@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
+import { FaIconComponent } from '../../../core/fontawesome';
 import { type NavLink } from '../../models/nav-link.model';
 import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'sh-navbar',
-  imports: [LogoComponent],
+  imports: [FaIconComponent, LogoComponent],
   templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

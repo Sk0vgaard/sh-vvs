@@ -23,6 +23,7 @@
   --color-brand: #1A6DF0;
   --color-brand-hover: #1559C7;
   --color-brand-tint: #E8F1FE;
+  --color-brand-on-dark: #6DAEFF;
 
   /* ---- Color: navy (dark surfaces) ---- */
   --color-navy-900: #0A1E3F;
@@ -186,6 +187,9 @@
   .eyebrow {
     @apply text-eyebrow uppercase text-brand;
   }
+  .eyebrow-on-dark {
+    @apply text-eyebrow uppercase text-brand-on-dark;
+  }
 
   /* Form control (input / textarea / select) */
   .field {
@@ -210,6 +214,11 @@
   .card {
     @apply flex h-full flex-col bg-surface border border-border rounded-lg p-6 shadow-card
            transition-shadow duration-200 ease-standard hover:shadow-card-hover;
+  }
+
+  /* Circular icon badge (footer contact, etc.) */
+  .icon-badge {
+    @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-brand text-on-primary;
   }
 
   /* Form field group (label + control + help) */

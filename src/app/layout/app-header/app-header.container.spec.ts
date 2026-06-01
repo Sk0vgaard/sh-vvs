@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
 import { routes } from '../../app.routes';
+import { registerFaIconsForTesting } from '../../core/fontawesome.testing';
 import { MobileNavState } from '../../core/services/mobile-nav.state';
 import { AppHeaderContainer } from './app-header.container';
 
@@ -15,6 +16,8 @@ describe('AppHeaderContainer', () => {
       imports: [AppHeaderContainer],
       providers: [provideRouter(routes)],
     }).compileComponents();
+
+    registerFaIconsForTesting();
 
     fixture = TestBed.createComponent(AppHeaderContainer);
     nav = TestBed.inject(MobileNavState);

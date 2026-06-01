@@ -6,87 +6,20 @@
       <span class="mx-auto mt-4 block h-0.5 w-12 bg-brand"></span>
     </div>
 
-    <div class="mt-12 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+    <!-- Mobile: 3 grouped compact cards -->
+    <div class="mt-8 grid grid-cols-1 gap-3 sm:hidden">
+      @for (service of mobileServices; track service.title) {
+        <sh-service-card [compact]="true" [title]="service.title" [description]="service.description">
+          <fa-icon serviceCardIcon [icon]="mobileServiceIcons[service.title]" class="size-7 text-brand" />
+        </sh-service-card>
+      }
+    </div>
+
+    <!-- Desktop / tablet: full 5-card grid -->
+    <div class="mt-12 hidden grid-cols-1 items-stretch gap-5 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
       @for (service of services(); track service.title) {
         <sh-service-card [title]="service.title" [description]="service.description">
-          @switch (service.title) {
-            @case ('VVS-installation') {
-              <svg
-                icon
-                class="mx-auto size-7 text-brand"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 2.7s6 6.4 6 10.3a6 6 0 1 1-12 0C6 9.1 12 2.7 12 2.7Z" />
-              </svg>
-            }
-            @case ('Varme & fjernvarme') {
-              <svg
-                icon
-                class="mx-auto size-7 text-brand"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <rect x="4" y="4" width="16" height="16" rx="2" />
-                <path d="M8 4v16M12 4v16M16 4v16" />
-              </svg>
-            }
-            @case ('Badeværelser') {
-              <svg
-                icon
-                class="mx-auto size-7 text-brand"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M9 4h6v4a4 4 0 0 1-8 0V4ZM12 12v8M8 20h8" />
-              </svg>
-            }
-            @case ('Service & reparation') {
-              <svg
-                icon
-                class="mx-auto size-7 text-brand"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 1 5.4-5.4l-2.5 2.5-1.4-1.4 2.5-2.5Z" />
-              </svg>
-            }
-            @default {
-              <svg
-                icon
-                class="mx-auto size-7 text-brand"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M3 21h18M6 21V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v16M19 21V9h-4M9 8h2M9 12h2M9 16h2" />
-              </svg>
-            }
-          }
+          <fa-icon serviceCardIcon [icon]="serviceIcons[service.title]" class="size-7 text-brand" />
         </sh-service-card>
       }
     </div>

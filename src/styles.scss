@@ -18,4 +18,13 @@
   body {
     @apply font-sans text-ink-500 bg-surface antialiased;
   }
+
+  /* Font Awesome: remove baseline gap so icons center in flex/badge circles */
+  fa-icon {
+    @apply inline-flex items-center justify-center leading-none;
+  }
+
+  fa-icon svg {
+    display: block;
+  }
 }

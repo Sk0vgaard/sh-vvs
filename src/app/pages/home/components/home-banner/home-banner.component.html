@@ -12,7 +12,7 @@
 
   <div class="shell relative lg:grid lg:grid-cols-2">
     <div class="flex flex-col justify-center py-12 lg:min-h-[34rem] lg:py-20 lg:pr-12">
-      <p class="eyebrow">Din lokale VVS-installatør</p>
+      <p class="eyebrow-on-dark">Din lokale VVS-installatør</p>
       <h1 class="mt-4 max-w-md text-display-xl text-on-dark">Kvalitet, pålidelighed og godt håndværk</h1>
       <p class="mt-5 max-w-md text-body-lg text-navy-muted">
         Skovgaard &amp; Heide VVS ApS leverer professionelle VVS-løsninger til både private og erhverv. Vi går aldrig på
@@ -26,18 +26,7 @@
           (click)="$event.preventDefault(); sectionNavigate.emit(SectionId.Services)"
         >
           <span>Vores ydelser</span>
-          <svg
-            class="size-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
+          <fa-icon icon="arrow-right" class="size-4" />
         </a>
         <a
           [href]="contactPath"
@@ -45,73 +34,27 @@
           (click)="$event.preventDefault(); sectionNavigate.emit(SectionId.Contact)"
         >
           <span>Kontakt os</span>
-          <svg
-            class="size-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
+          <fa-icon icon="arrow-right" class="size-4" />
         </a>
       </div>
 
       <ul class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-x-5">
         <li class="flex items-start gap-2.5">
-          <svg
-            class="mt-0.5 size-5 shrink-0 text-brand"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-          </svg>
+          <fa-icon icon="shield-halved" class="mt-0.5 size-5 text-brand-on-dark" />
           <span>
             <span class="block text-[0.8125rem] font-semibold text-on-dark">Kvalitet i fokus</span>
             <span class="block text-[0.8125rem] text-navy-muted">Vi leverer løsninger, der holder.</span>
           </span>
         </li>
         <li class="flex items-start gap-2.5">
-          <svg
-            class="mt-0.5 size-5 shrink-0 text-brand"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 7v5l3 2" />
-          </svg>
+          <fa-icon icon="clock" class="mt-0.5 size-5 text-brand-on-dark" />
           <span>
             <span class="block text-[0.8125rem] font-semibold text-on-dark">Til tiden</span>
             <span class="block text-[0.8125rem] text-navy-muted">Vi overholder aftaler og deadlines.</span>
           </span>
         </li>
         <li class="flex items-start gap-2.5">
-          <svg
-            class="mt-0.5 size-5 shrink-0 text-brand"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
-          </svg>
+          <fa-icon icon="user" class="mt-0.5 size-5 text-brand-on-dark" />
           <span>
             <span class="block text-[0.8125rem] font-semibold text-on-dark">Personlig service</span>
             <span class="block text-[0.8125rem] text-navy-muted">Vi er tæt på dig hele vejen.</span>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { registerFaIconsForTesting } from '../../../../core/fontawesome.testing';
 import { SERVICES } from '../../../../shared/data/services.data';
 import { ServicesListComponent } from './services-list.component';
 
@@ -11,14 +12,17 @@ describe('ServicesListComponent', () => {
       imports: [ServicesListComponent],
     }).compileComponents();
 
+    registerFaIconsForTesting();
+
     fixture = TestBed.createComponent(ServicesListComponent);
     fixture.componentRef.setInput('services', SERVICES);
     fixture.detectChanges();
   });
 
-  it('renders a card for each service', () => {
-    const cards = fixture.nativeElement.querySelectorAll('sh-service-card');
+  it('renders grouped compact cards on mobile and full cards on desktop', () => {
+    const desktopGrid = fixture.nativeElement.querySelector('.hidden.sm\\:grid');
 
-    expect(cards.length).toBe(SERVICES.length);
+    expect(fixture.nativeElement.querySelectorAll('.sm\\:hidden sh-service-card').length).toBe(3);
+    expect(desktopGrid.querySelectorAll('sh-service-card').length).toBe(SERVICES.length);
   });
 });

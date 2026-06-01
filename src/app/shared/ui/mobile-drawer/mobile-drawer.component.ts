@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, HostListener, input, output } from '@angular/core';
 
+import { FaIconComponent } from '../../../core/fontawesome';
 import { type NavLink } from '../../models/nav-link.model';
 
 @Component({
   selector: 'sh-mobile-drawer',
+  imports: [FaIconComponent],
   templateUrl: './mobile-drawer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

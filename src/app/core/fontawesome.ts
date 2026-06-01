@@ -8,7 +8,8 @@ config.autoAddCss = false;
 
 export { FaIconComponent } from '@fortawesome/angular-fontawesome';
 export type { IconDefinition, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
-export { appIcons, registerAppIcons } from './fontawesome.icons';
+export { APP_ICON_MAP, appIcons, registerAppIcons } from './fontawesome.icons';
+export type { FaIconName } from './fontawesome.icons';
 
 export function provideFontAwesome() {
   return provideAppInitializer(() => {
