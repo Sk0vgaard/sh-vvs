@@ -11,7 +11,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     title: 'Badeværelser',
-    description: 'Komplette badeværelsesprojekter for boligejere med fokus på funktion og finish.',
+    description: 'Komplette badeværelsesprojekter til bolig og erhverv — funktion og finish i orden.',
   },
   {
     title: 'Service & reparation',
@@ -31,10 +31,10 @@ export const MOBILE_SERVICES: ServiceItem[] = [
   },
   {
     title: 'Badeværelser',
-    description: 'Komplette badeværelser til private boliger.',
+    description: 'Komplette badeværelser til bolig og erhverv.',
   },
   {
     title: 'Service & erhverv',
-    description: 'Akut service og erhvervsprojekter — private og business.',
+    description: 'Akut service og større projekter — til private og erhverv.',
   },
 ];

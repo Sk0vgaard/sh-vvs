@@ -15,10 +15,10 @@ Keep data-driven services list pattern; presentational service cards unchanged i
 
 ## Acceptance criteria
 
-- [ ] Service copy reflects balanced private and commercial focus
-- [ ] Mobile grouped services remain coherent after copy changes
-- [ ] Existing services list tests still pass or are updated for intentional copy changes
-- [ ] No broken layout in services grid/list
+- [x] Service copy reflects balanced private and commercial focus
+- [x] Mobile grouped services remain coherent after copy changes
+- [x] Existing services list tests still pass or are updated for intentional copy changes
+- [x] No broken layout in services grid/list
 
 ## Blocked by
 
