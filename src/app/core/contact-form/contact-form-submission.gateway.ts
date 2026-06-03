@@ -3,7 +3,7 @@ import { type ContactFormSubmitPayload } from './contact-form.model';
 export type ContactFormSubmitResult = { ok: true } | { ok: false; message: string };
 
 export abstract class ContactFormSubmissionGateway {
-  abstract submit(payload: ContactFormSubmitPayload): Promise<ContactFormSubmitResult>;
+  public abstract submit(payload: ContactFormSubmitPayload): Promise<ContactFormSubmitResult>;
 }
 
 export class HttpContactFormSubmissionGateway extends ContactFormSubmissionGateway {
@@ -11,7 +11,7 @@ export class HttpContactFormSubmissionGateway extends ContactFormSubmissionGatew
     super();
   }
 
-  async submit(payload: ContactFormSubmitPayload): Promise<ContactFormSubmitResult> {
+  public override async submit(payload: ContactFormSubmitPayload): Promise<ContactFormSubmitResult> {
     try {
       const response = await fetch(this.apiUrl, {
         method: 'POST',
@@ -32,7 +32,7 @@ export class HttpContactFormSubmissionGateway extends ContactFormSubmissionGatew
 }
 
 export class NoopContactFormSubmissionGateway extends ContactFormSubmissionGateway {
-  async submit(): Promise<ContactFormSubmitResult> {
-    return { ok: false, message: 'Kontaktformular er ikke konfigureret endnu.' };
+  public override submit(): Promise<ContactFormSubmitResult> {
+    return Promise.resolve({ ok: false, message: 'Kontaktformular er ikke konfigureret endnu.' });
   }
 }

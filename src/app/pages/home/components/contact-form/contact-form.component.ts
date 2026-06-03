@@ -1,24 +1,22 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { FormField } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
 
+import { type ContactFormFieldTree } from '../../../../core/contact-form/contact-form.factory';
 import {
   CONTACT_FORM_DESCRIPTION_MIN_LENGTH,
   MAX_CONTACT_FORM_IMAGES,
-  type ContactFormErrors,
-  type ContactFormField,
-  type ContactFormValues,
 } from '../../../../core/contact-form/contact-form.model';
 import { type ContactFormSubjectOption } from '../../../../shared/models/contact-form-subject';
 
 @Component({
   selector: 'sh-contact-form',
-  imports: [RouterLink],
+  imports: [FormField, RouterLink],
   templateUrl: './contact-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
-  readonly values = input.required<ContactFormValues>();
-  readonly errors = input.required<ContactFormErrors>();
+  readonly contactForm = input.required<ContactFormFieldTree>();
   readonly subjects = input.required<ContactFormSubjectOption[]>();
   readonly fileError = input<string | undefined>();
   readonly selectedImageNames = input<string[]>([]);
@@ -29,19 +27,8 @@ export class ContactFormComponent {
   readonly successMessage = input<string | undefined>();
   readonly errorMessage = input<string | undefined>();
 
-  readonly fieldChange = output<{ field: ContactFormField; value: string | boolean }>();
   readonly filesSelected = output<FileList>();
-  readonly submitForm = output<void>();
-
-  protected onInput(field: ContactFormField, event: Event): void {
-    const target = event.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-    this.fieldChange.emit({ field, value: target.value });
-  }
-
-  protected onPrivacyChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.fieldChange.emit({ field: 'privacyAccepted', value: target.checked });
-  }
+  readonly submitForm = output<Event>();
 
   protected onFilesChange(event: Event): void {
     const target = event.target as HTMLInputElement;
@@ -50,14 +37,14 @@ export class ContactFormComponent {
     }
   }
 
-  protected fieldError(field: ContactFormField): string | undefined {
-    return this.errors()[field];
+  protected showFieldError(field: { touched: () => boolean; invalid: () => boolean }): boolean {
+    return field.touched() && field.invalid();
   }
 
   protected readonly descriptionMinLength = CONTACT_FORM_DESCRIPTION_MIN_LENGTH;
 
   protected descriptionLength(): number {
-    return this.values().description.trim().length;
+    return this.contactForm().description().value().trim().length;
   }
 
   protected descriptionMinMet(): boolean {

@@ -1,8 +1,7 @@
 <div class="flex flex-col gap-6">
   <sh-acute-callout [title]="acuteTitle" [phoneHref]="contact.phoneHref" [phoneLabel]="'Ring ' + contact.phoneLabel" />
   <sh-contact-form
-    [values]="values()"
-    [errors]="errors()"
+    [contactForm]="contactForm"
     [subjects]="subjects"
     [fileError]="fileError()"
     [selectedImageNames]="selectedImageNames()"
@@ -12,8 +11,7 @@
     [validationSummary]="validationSummary()"
     [successMessage]="successMessage()"
     [errorMessage]="errorMessage()"
-    (fieldChange)="onFieldChange($event)"
     (filesSelected)="onFilesSelected($event)"
-    (submitForm)="onSubmit()"
+    (submitForm)="onSubmit($event)"
   />
 </div>

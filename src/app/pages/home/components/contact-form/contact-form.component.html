@@ -3,25 +3,24 @@
     <p class="font-semibold">{{ success }}</p>
   </div>
 } @else {
-  <form class="grid gap-5" (submit)="$event.preventDefault(); submitForm.emit()" novalidate>
+  <form class="grid gap-5" (submit)="submitForm.emit($event)" novalidate>
     <div class="field-group">
       <label class="field-label" for="contact-fullName">
         Fulde navn <span class="text-danger" aria-hidden="true">*</span>
       </label>
       <input
         id="contact-fullName"
-        name="fullName"
         type="text"
         class="field"
-        required
         aria-required="true"
-        [class.field-error]="fieldError('fullName')"
-        [value]="values().fullName"
+        [class.field-error]="showFieldError(contactForm().fullName())"
+        [formField]="contactForm().fullName"
         autocomplete="name"
-        (input)="onInput('fullName', $event)"
       />
-      @if (fieldError('fullName'); as message) {
-        <p class="text-sm text-danger">{{ message }}</p>
+      @if (showFieldError(contactForm().fullName()); as _) {
+        @if (contactForm().fullName().errors()[0]; as error) {
+          <p class="text-sm text-danger">{{ error.message }}</p>
+        }
       }
     </div>
 
@@ -32,18 +31,17 @@
         </label>
         <input
           id="contact-streetAddress"
-          name="streetAddress"
           type="text"
           class="field"
-          required
           aria-required="true"
-          [class.field-error]="fieldError('streetAddress')"
-          [value]="values().streetAddress"
+          [class.field-error]="showFieldError(contactForm().streetAddress())"
+          [formField]="contactForm().streetAddress"
           autocomplete="street-address"
-          (input)="onInput('streetAddress', $event)"
         />
-        @if (fieldError('streetAddress'); as message) {
-          <p class="text-sm text-danger">{{ message }}</p>
+        @if (showFieldError(contactForm().streetAddress()); as _) {
+          @if (contactForm().streetAddress().errors()[0]; as error) {
+            <p class="text-sm text-danger">{{ error.message }}</p>
+          }
         }
       </div>
 
@@ -53,21 +51,18 @@
         </label>
         <input
           id="contact-postalCode"
-          name="postalCode"
           type="text"
           class="field"
-          required
           aria-required="true"
           inputmode="numeric"
-          maxlength="4"
-          pattern="\d{4}"
-          [class.field-error]="fieldError('postalCode')"
-          [value]="values().postalCode"
+          [class.field-error]="showFieldError(contactForm().postalCode())"
+          [formField]="contactForm().postalCode"
           autocomplete="postal-code"
-          (input)="onInput('postalCode', $event)"
         />
-        @if (fieldError('postalCode'); as message) {
-          <p class="text-sm text-danger">{{ message }}</p>
+        @if (showFieldError(contactForm().postalCode()); as _) {
+          @if (contactForm().postalCode().errors()[0]; as error) {
+            <p class="text-sm text-danger">{{ error.message }}</p>
+          }
         }
       </div>
     </div>
@@ -79,18 +74,17 @@
         </label>
         <input
           id="contact-phone"
-          name="phone"
           type="tel"
           class="field"
-          required
           aria-required="true"
-          [class.field-error]="fieldError('phone')"
-          [value]="values().phone"
+          [class.field-error]="showFieldError(contactForm().phone())"
+          [formField]="contactForm().phone"
           autocomplete="tel"
-          (input)="onInput('phone', $event)"
         />
-        @if (fieldError('phone'); as message) {
-          <p class="text-sm text-danger">{{ message }}</p>
+        @if (showFieldError(contactForm().phone()); as _) {
+          @if (contactForm().phone().errors()[0]; as error) {
+            <p class="text-sm text-danger">{{ error.message }}</p>
+          }
         }
       </div>
 
@@ -100,18 +94,17 @@
         </label>
         <input
           id="contact-email"
-          name="email"
           type="email"
           class="field"
-          required
           aria-required="true"
-          [class.field-error]="fieldError('email')"
-          [value]="values().email"
+          [class.field-error]="showFieldError(contactForm().email())"
+          [formField]="contactForm().email"
           autocomplete="email"
-          (input)="onInput('email', $event)"
         />
-        @if (fieldError('email'); as message) {
-          <p class="text-sm text-danger">{{ message }}</p>
+        @if (showFieldError(contactForm().email()); as _) {
+          @if (contactForm().email().errors()[0]; as error) {
+            <p class="text-sm text-danger">{{ error.message }}</p>
+          }
         }
       </div>
     </div>
@@ -122,22 +115,21 @@
       </label>
       <select
         id="contact-subject"
-        name="subject"
         class="field field-select"
-        required
         aria-required="true"
-        [class.field-error]="fieldError('subject')"
-        [class.field-select-placeholder]="!values().subject"
-        [value]="values().subject"
-        (change)="onInput('subject', $event)"
+        [class.field-error]="showFieldError(contactForm().subject())"
+        [class.field-select-placeholder]="!contactForm().subject().value()"
+        [formField]="contactForm().subject"
       >
         <option value="" disabled>Vælg emne</option>
         @for (option of subjects(); track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
         }
       </select>
-      @if (fieldError('subject'); as message) {
-        <p class="text-sm text-danger">{{ message }}</p>
+      @if (showFieldError(contactForm().subject()); as _) {
+        @if (contactForm().subject().errors()[0]; as error) {
+          <p class="text-sm text-danger">{{ error.message }}</p>
+        }
       }
     </div>
 
@@ -147,16 +139,12 @@
       </label>
       <textarea
         id="contact-description"
-        name="description"
         rows="5"
         class="field min-h-28"
-        required
         aria-required="true"
-        [attr.minlength]="descriptionMinLength"
         aria-describedby="contact-description-hint"
-        [class.field-error]="fieldError('description')"
-        [value]="values().description"
-        (input)="onInput('description', $event)"
+        [class.field-error]="showFieldError(contactForm().description())"
+        [formField]="contactForm().description"
       ></textarea>
       <p
         id="contact-description-hint"
@@ -167,8 +155,10 @@
       >
         {{ descriptionLength() }} / {{ descriptionMinLength }}
       </p>
-      @if (fieldError('description'); as message) {
-        <p class="text-sm text-danger">{{ message }}</p>
+      @if (showFieldError(contactForm().description()); as _) {
+        @if (contactForm().description().errors()[0]; as error) {
+          <p class="text-sm text-danger">{{ error.message }}</p>
+        }
       }
     </div>
 
@@ -181,7 +171,6 @@
       >
         <input
           id="contact-images"
-          name="images"
           type="file"
           class="sr-only"
           accept="image/jpeg,image/png,image/webp"
@@ -221,12 +210,9 @@
           <input
             id="contact-privacyAccepted"
             type="checkbox"
-            name="privacyAccepted"
             class="size-4 rounded border-field-border"
-            required
             aria-required="true"
-            [checked]="values().privacyAccepted"
-            (change)="onPrivacyChange($event)"
+            [formField]="contactForm().privacyAccepted"
           />
         </span>
         <span class="min-w-0">
@@ -234,8 +220,10 @@
           <a routerLink="/privatliv" class="font-semibold text-brand hover:underline">Læs privatlivspolitik</a>
         </span>
       </label>
-      @if (fieldError('privacyAccepted'); as message) {
-        <p class="text-sm text-danger">{{ message }}</p>
+      @if (showFieldError(contactForm().privacyAccepted()); as _) {
+        @if (contactForm().privacyAccepted().errors()[0]; as error) {
+          <p class="text-sm text-danger">{{ error.message }}</p>
+        }
       }
     </div>
 

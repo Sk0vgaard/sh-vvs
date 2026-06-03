@@ -1,4 +1,5 @@
-import { type ContactFormErrors, type ContactFormField } from './contact-form.types';
+import { type ContactFormFieldTree } from './contact-form.factory';
+import { type ContactFormField } from './contact-form.types';
 
 export const CONTACT_FORM_FIELD_ORDER: readonly ContactFormField[] = [
   'fullName',
@@ -22,8 +23,8 @@ const FIELD_ELEMENT_IDS: Record<ContactFormField, string> = {
   privacyAccepted: 'contact-privacyAccepted',
 };
 
-export function firstInvalidContactFormField(errors: ContactFormErrors): ContactFormField | undefined {
-  return CONTACT_FORM_FIELD_ORDER.find((field) => Boolean(errors[field]));
+export function firstInvalidContactFormField(form: ContactFormFieldTree): ContactFormField | undefined {
+  return CONTACT_FORM_FIELD_ORDER.find((field) => form[field]().invalid());
 }
 
 export function focusContactFormField(field: ContactFormField): void {

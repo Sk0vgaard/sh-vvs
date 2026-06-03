@@ -15,8 +15,6 @@ export type ContactFormTextField = 'fullName' | 'streetAddress' | 'postalCode' |
 
 export type ContactFormField = ContactFormTextField | 'subject' | 'privacyAccepted';
 
-export type ContactFormErrors = Partial<Record<ContactFormField, string>>;
-
 export interface ContactFormImagePayload {
   name: string;
   type: string;
