@@ -1,14 +1,18 @@
 # ShVvs
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.13.
+This project uses [Angular CLI](https://github.com/angular/angular-cli) v22.
+
+**Prerequisites:** Node.js v22.22.3+ (see [.nvmrc](.nvmrc)). Angular 22 requires TypeScript 6.
 
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+npm start
 ```
+
+This uses the Angular CLI from `node_modules` (no global install needed). Alternatively: `npx ng serve`.
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
