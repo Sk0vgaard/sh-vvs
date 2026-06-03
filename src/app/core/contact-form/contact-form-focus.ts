@@ -39,8 +39,8 @@ export function focusContactFormField(field: ContactFormField): void {
     if (typeof element.scrollIntoView !== 'function') {
       return;
     }
-    const prefersReducedMotion =
-      typeof window.matchMedia === 'function' &&
-      lement.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
+    const prefersReducedMotion: boolean =
+      typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
   });
 }
