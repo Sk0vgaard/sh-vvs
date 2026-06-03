@@ -1,0 +1,31 @@
+<section [id]="sectionId()" class="shell border-t border-ink-100 py-16 lg:py-20">
+  <p class="eyebrow">Tryghed</p>
+  <h2 class="mt-2 text-h2 text-ink-900">Garanti & priser</h2>
+  <p class="mt-4 max-w-2xl text-body-lg text-ink-600">{{ guaranteeIntro() }}</p>
+  <p class="mt-3 max-w-2xl text-body text-ink-600">{{ quoteNote() }}</p>
+
+  <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+    @for (bullet of trustBullets(); track bullet) {
+      <li class="flex items-start gap-2 text-sm text-ink-700">
+        <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true"></span>
+        {{ bullet }}
+      </li>
+    }
+  </ul>
+
+  <p class="mt-6">
+    <a [href]="tekniqUrl()" class="font-semibold text-brand hover:underline" target="_blank" rel="noopener noreferrer">
+      {{ tekniqLabel() }}
+    </a>
+  </p>
+
+  <div class="mt-10 grid gap-4 sm:grid-cols-2">
+    @for (price of prices(); track price.id) {
+      <article class="card">
+        <h3 class="text-h3 text-ink-900">{{ price.title }}</h3>
+        <p class="mt-2 text-h2 text-brand">{{ price.formattedAmount }}</p>
+        <p class="mt-1 text-sm text-ink-600">{{ price.momsText }}</p>
+      </article>
+    }
+  </div>
+</section>

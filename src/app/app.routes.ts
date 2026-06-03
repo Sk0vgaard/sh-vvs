@@ -2,7 +2,7 @@ import { type Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
-import { HOME_SECTIONS } from './shared/data/home-sections';
+import { HOME_SECTIONS } from './shared/data/navigation/home-sections';
 
 export const routes: Routes = [
   { path: 'privatliv', component: PrivacyComponent },

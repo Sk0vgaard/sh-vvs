@@ -6,7 +6,7 @@ import {
   PRIVACY_POLICY_STUB_NOTICE,
   PRIVACY_POLICY_STUB_SECTIONS,
   PRIVACY_POLICY_STUB_TITLE,
-} from '../../shared/data/privacy-policy.content';
+} from '../../shared/data/privacy/privacy-policy.content';
 
 @Component({
   selector: 'sh-privacy',

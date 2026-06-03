@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { registerFaIconsForTesting } from '../../../../core/fontawesome.testing';
-import { CONTACT } from '../../../../shared/data/contact.data';
+import { CONTACT } from '../../../../shared/data/contact/contact.data';
 import { SectionIds } from '../../../../shared/models/section-id';
 import { HomeBannerComponent } from './home-banner.component';
 

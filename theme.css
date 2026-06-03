@@ -204,6 +204,17 @@
   .field-error {
     @apply border-danger focus:border-danger;
   }
+  .field-select {
+    @apply appearance-none cursor-pointer pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath stroke='%234a5d75' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.75' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+  }
+  .field-select:invalid,
+  .field-select.field-select-placeholder {
+    @apply text-placeholder;
+  }
   .field-label {
     @apply block mb-1.5 text-sm font-semibold text-ink-700;
   }

@@ -3,6 +3,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideContactForm } from './core/contact-form/provide-contact-form';
 import { firebaseConfig } from './core/firebase.config';
 import { provideFontAwesome } from './core/fontawesome';
 
@@ -12,5 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFontAwesome(),
+    provideContactForm(),
   ],
 };

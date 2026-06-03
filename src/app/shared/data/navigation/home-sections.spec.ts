@@ -1,4 +1,4 @@
-import { SectionIds } from '../models/section-id';
+import { SectionIds } from '../../models/section-id';
 import { sectionIdForPath } from './home-sections';
 
 describe('home-sections', () => {

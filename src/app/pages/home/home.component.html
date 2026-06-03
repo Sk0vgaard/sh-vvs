@@ -2,20 +2,40 @@
 <main>
   <sh-home-banner (sectionNavigate)="scrollToSection($event)" />
   <sh-services-list-container />
-  <sh-section-placeholder
-    [sectionId]="SectionIds.About"
-    title="Om os"
-    description="Historie og team kommer her. Indhold udarbejdes i næste trin."
-  />
-  <sh-section-placeholder
+  <sh-guarantee-pricing
     [sectionId]="SectionIds.GuaranteePricing"
-    title="Garanti & priser"
-    description="Priser, garanti og TEKNIQ-information kommer her."
+    [prices]="prices"
+    [trustBullets]="trustBullets"
+    [tekniqLabel]="trust.tekniqLabel"
+    [tekniqUrl]="trust.tekniqUrl"
+    [guaranteeIntro]="trust.guaranteeIntro"
+    [quoteNote]="trust.quoteNote"
   />
+  <sh-about-section
+    [sectionId]="SectionIds.About"
+    [heading]="aboutStory.heading"
+    [paragraphs]="aboutStory.paragraphs"
+    [partners]="aboutPartners"
+  />
+  <sh-contact-section
+    [phoneHref]="contact.phoneHref"
+    [phoneLabel]="contact.phoneLabel"
+    [emailHref]="contact.emailHref"
+    [emailLabel]="contact.emailLabel"
+    [serviceArea]="company.serviceArea"
+    [responsePromise]="responsePromise"
+    [phoneHoursSummary]="phoneHoursSummary"
+  >
+    <sh-contact-form-container />
+  </sh-contact-section>
 </main>
 <sh-footer
   [phoneHref]="contact.phoneHref"
   [phoneLabel]="contact.phoneLabel"
   [emailHref]="contact.emailHref"
   [emailLabel]="contact.emailLabel"
+  [serviceArea]="company.serviceArea"
+  [legalName]="company.legalName"
+  [cvr]="company.cvr"
+  [streetAddress]="company.streetAddress"
 />

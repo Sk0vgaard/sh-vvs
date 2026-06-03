@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { registerFaIconsForTesting } from '../../../core/fontawesome.testing';
-import { NAV_LINKS } from '../../data/nav-links';
+import { NAV_LINKS } from '../../data/navigation/nav-links';
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {

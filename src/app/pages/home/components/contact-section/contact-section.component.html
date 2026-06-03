@@ -1,0 +1,42 @@
+<section [id]="SectionIds.Contact" class="bg-surface-subtle border-t border-ink-100">
+  <div class="shell py-16 lg:py-20">
+    <p class="eyebrow">Kontakt</p>
+    <h2 class="mt-2 text-h2 text-ink-900">Ring eller skriv til os</h2>
+    <p class="mt-3 max-w-2xl text-body-lg text-ink-600">{{ responsePromise() }}</p>
+
+    <div class="mt-10 grid gap-8 lg:grid-cols-3">
+      <div class="flex gap-3">
+        <span class="icon-badge">
+          <fa-icon icon="phone" class="size-5" />
+        </span>
+        <span>
+          <span class="block text-sm font-semibold text-ink-900">Telefon</span>
+          <a [href]="phoneHref()" class="mt-1 block font-semibold text-brand">{{ phoneLabel() }}</a>
+          <span class="mt-2 block text-sm text-ink-600">{{ phoneHoursSummary() }}</span>
+        </span>
+      </div>
+      <div class="flex gap-3">
+        <span class="icon-badge">
+          <fa-icon icon="envelope" class="size-5" />
+        </span>
+        <span>
+          <span class="block text-sm font-semibold text-ink-900">E-mail</span>
+          <a [href]="emailHref()" class="mt-1 block font-semibold text-brand">{{ emailLabel() }}</a>
+        </span>
+      </div>
+      <div class="flex gap-3">
+        <span class="icon-badge">
+          <fa-icon icon="location-dot" class="size-5" />
+        </span>
+        <span>
+          <span class="block text-sm font-semibold text-ink-900">Område</span>
+          <span class="mt-1 block text-sm text-ink-600">{{ serviceArea() }}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <ng-content />
+    </div>
+  </div>
+</section>

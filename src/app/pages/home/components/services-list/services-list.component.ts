@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { FaIconComponent } from '../../../../core/fontawesome';
 import { type FaIconName } from '../../../../core/fontawesome.icons';
-import { MOBILE_SERVICES } from '../../../../shared/data/services.data';
+import { MOBILE_SERVICES } from '../../../../shared/data/services/services.data';
 import { SectionIds } from '../../../../shared/models/section-id';
 import { type ServiceItem } from '../../../../shared/models/service-item.model';
 import { ServiceCardComponent } from '../../../../shared/ui/service-card/service-card.component';

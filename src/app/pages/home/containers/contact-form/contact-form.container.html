@@ -1,0 +1,19 @@
+<div class="grid gap-8 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:items-start">
+  <sh-acute-callout [title]="acuteTitle" [phoneHref]="contact.phoneHref" [phoneLabel]="'Ring ' + contact.phoneLabel" />
+  <sh-contact-form
+    [values]="values()"
+    [errors]="errors()"
+    [subjects]="subjects"
+    [fileError]="fileError()"
+    [selectedImageNames]="selectedImageNames()"
+    [imageHelp]="imageHelp"
+    [submitting]="submitting()"
+    [submitDisabled]="submitDisabled()"
+    [validationSummary]="validationSummary()"
+    [successMessage]="successMessage()"
+    [errorMessage]="errorMessage()"
+    (fieldChange)="onFieldChange($event)"
+    (filesSelected)="onFilesSelected($event)"
+    (submitForm)="onSubmit()"
+  />
+</div>

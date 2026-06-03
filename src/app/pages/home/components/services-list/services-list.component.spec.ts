@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { registerFaIconsForTesting } from '../../../../core/fontawesome.testing';
-import { SERVICES } from '../../../../shared/data/services.data';
+import { SERVICES } from '../../../../shared/data/services/services.data';
 import { ServicesListComponent } from './services-list.component';
 
 describe('ServicesListComponent', () => {

@@ -1,4 +1,4 @@
-import { type ScrollSectionId, SectionIds } from '../models/section-id';
+import { type ScrollSectionId, SectionIds } from '../../models/section-id';
 
 export interface HomeSection {
   path: string;

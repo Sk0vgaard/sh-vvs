@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { SectionIds } from '../../shared/models/section-id';
 import { PageNavigationService } from './page-navigation.service';
@@ -53,5 +54,24 @@ describe('PageNavigationService', () => {
     service.scrollToTop();
 
     expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'auto' });
+  });
+
+  it('scrolls to section without navigating when URL already matches', async () => {
+    const target = document.createElement('section');
+    target.id = SectionIds.Contact;
+    document.body.appendChild(target);
+    const scrollIntoView = vi.fn();
+    target.scrollIntoView = scrollIntoView;
+
+    const navigateByUrl = vi.fn();
+    const router = { url: '/contact', navigateByUrl } as Pick<Router, 'url' | 'navigateByUrl'> as Router;
+
+    service.navigateToHomeSection(router, SectionIds.Contact);
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
+    expect(navigateByUrl).not.toHaveBeenCalled();
+    expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
+
+    target.remove();
   });
 });

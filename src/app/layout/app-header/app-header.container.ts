@@ -4,9 +4,10 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 
 import { MobileNavState } from '../../core/services/mobile-nav.state';
-import { CONTACT } from '../../shared/data/contact.data';
-import { isHomePath } from '../../shared/data/home-sections';
-import { NAV_LINKS } from '../../shared/data/nav-links';
+import { PageNavigationService } from '../../core/services/page-navigation.service';
+import { CONTACT } from '../../shared/data/contact/contact.data';
+import { isHomePath } from '../../shared/data/navigation/home-sections';
+import { NAV_LINKS } from '../../shared/data/navigation/nav-links';
 import { type NavLink, withActiveNavLinks } from '../../shared/models/nav-link.model';
 import { isScrollSectionId, SectionIds } from '../../shared/models/section-id';
 import { MobileDrawerComponent } from '../../shared/ui/mobile-drawer/mobile-drawer.component';
@@ -20,6 +21,7 @@ import { NavbarComponent } from '../../shared/ui/navbar/navbar.component';
 })
 export class AppHeaderContainer {
   private readonly router = inject(Router);
+  private readonly pageNav = inject(PageNavigationService);
 
   protected readonly nav = inject(MobileNavState);
   protected readonly contact = CONTACT;
@@ -56,7 +58,19 @@ export class AppHeaderContainer {
     }
 
     event.preventDefault();
-    void this.router.navigateByUrl(link.href);
+
+    if (link.id === SectionIds.Home) {
+      if (this.currentPath() === '/') {
+        this.pageNav.scrollToTop();
+      } else {
+        void this.router.navigateByUrl('/');
+      }
+      return;
+    }
+
+    if (isScrollSectionId(link.id)) {
+      this.pageNav.navigateToHomeSection(this.router, link.id);
+    }
   }
 
   private shouldHandleInApp(link: NavLink): boolean {

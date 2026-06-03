@@ -1,5 +1,5 @@
-import { withActiveNavLinks } from '../models/nav-link.model';
-import { SectionIds } from '../models/section-id';
+import { withActiveNavLinks } from '../../models/nav-link.model';
+import { SectionIds } from '../../models/section-id';
 import { NAV_LINKS } from './nav-links';
 
 describe('withActiveNavLinks', () => {

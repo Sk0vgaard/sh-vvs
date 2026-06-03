@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { SERVICES } from '../../../../shared/data/services.data';
+import { SERVICES } from '../../../../shared/data/services/services.data';
 import { ServicesListComponent } from '../../components/services-list/services-list.component';
 
 @Component({

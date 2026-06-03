@@ -1,0 +1,31 @@
+<section [id]="sectionId()" class="shell border-t border-ink-100 py-16 lg:py-20">
+  <p class="eyebrow">Om os</p>
+  <h2 class="mt-2 text-h2 text-ink-900">{{ heading() }}</h2>
+  @for (paragraph of paragraphs(); track paragraph) {
+    <p class="mt-4 max-w-2xl text-body-lg text-ink-600">{{ paragraph }}</p>
+  }
+
+  <div class="mt-12 grid gap-8 md:grid-cols-2">
+    @for (partner of partners(); track partner.name) {
+      <article class="card">
+        <div
+          class="mb-4 flex h-40 items-center justify-center rounded-md bg-surface-subtle text-sm text-ink-500"
+          aria-hidden="true"
+        >
+          Foto kommer snart
+        </div>
+        <h3 class="text-h3 text-ink-900">{{ partner.name }}</h3>
+        <p class="mt-1 text-sm font-semibold text-ink-600">
+          {{ partner.titles.join(' · ') }}
+        </p>
+        <a
+          [href]="'mailto:' + partner.email"
+          class="mt-2 inline-block text-sm font-semibold text-brand hover:underline"
+        >
+          {{ partner.email }}
+        </a>
+        <p class="mt-3 text-body text-ink-600">{{ partner.bio }}</p>
+      </article>
+    }
+  </div>
+</section>

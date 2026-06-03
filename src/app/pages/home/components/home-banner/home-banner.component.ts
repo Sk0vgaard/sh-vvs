@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
 import { FaIconComponent } from '../../../../core/fontawesome';
-import { CONTACT } from '../../../../shared/data/contact.data';
+import { CONTACT } from '../../../../shared/data/contact/contact.data';
 import {
   HERO_CHANNEL_GUIDANCE_LINES,
   HERO_LEAD_COPY,
   HERO_PHONE_HOURS_SUMMARY,
-} from '../../../../shared/data/hero.messages';
-import { HOME_SECTIONS } from '../../../../shared/data/home-sections';
+} from '../../../../shared/data/hero/hero.messages';
+import { HOME_SECTIONS } from '../../../../shared/data/navigation/home-sections';
 import { type ScrollSectionId, SectionIds } from '../../../../shared/models/section-id';
 
 @Component({
