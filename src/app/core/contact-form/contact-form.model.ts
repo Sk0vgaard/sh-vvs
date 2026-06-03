@@ -1,7 +1,6 @@
 import { type ContactFormValues } from './contact-form.types';
 
 export type {
-  ContactFormErrors,
   ContactFormField,
   ContactFormImagePayload,
   ContactFormSubmitPayload,

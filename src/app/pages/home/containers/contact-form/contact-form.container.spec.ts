@@ -15,6 +15,17 @@ class MockGateway extends ContactFormSubmissionGateway {
     .mockResolvedValue({ ok: true } satisfies ContactFormSubmitResult);
 }
 
+function fillValidForm(component: ContactFormContainer): void {
+  component['contactForm'].fullName().value.set('Oliver Test');
+  component['contactForm'].streetAddress().value.set('Testvej 1');
+  component['contactForm'].postalCode().value.set('2791');
+  component['contactForm'].phone().value.set('30144514');
+  component['contactForm'].email().value.set('test@example.com');
+  component['contactForm'].subject().value.set(ContactFormSubject.Other);
+  component['contactForm'].description().value.set('Jeg har brug for hjælp med VVS');
+  component['contactForm'].privacyAccepted().value.set(true);
+}
+
 describe('ContactFormContainer', () => {
   let gateway: MockGateway;
 
@@ -34,13 +45,12 @@ describe('ContactFormContainer', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    await component['onSubmit']();
+    component['onSubmit'](new Event('submit'));
     fixture.detectChanges();
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 
     expect(gateway.submit).not.toHaveBeenCalled();
-    expect(component['errors']().fullName).toBeDefined();
-    expect(component['showFieldErrors']()).toBe(true);
+    expect(component['contactForm']().invalid()).toBe(true);
     expect(component['submitAttempted']()).toBe(true);
     expect(component['submitDisabled']()).toBe(true);
 
@@ -53,17 +63,10 @@ describe('ContactFormContainer', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    await component['onSubmit']();
+    component['onSubmit'](new Event('submit'));
     expect(component['submitDisabled']()).toBe(true);
 
-    component['onFieldChange']({ field: 'fullName', value: 'Oliver Test' });
-    component['onFieldChange']({ field: 'streetAddress', value: 'Testvej 1' });
-    component['onFieldChange']({ field: 'postalCode', value: '2791' });
-    component['onFieldChange']({ field: 'phone', value: '30144514' });
-    component['onFieldChange']({ field: 'email', value: 'test@example.com' });
-    component['onFieldChange']({ field: 'subject', value: ContactFormSubject.Other });
-    component['onFieldChange']({ field: 'description', value: 'Jeg har brug for hjælp med VVS' });
-    component['onFieldChange']({ field: 'privacyAccepted', value: true });
+    fillValidForm(component);
     fixture.detectChanges();
 
     expect(component['submitDisabled']()).toBe(false);
@@ -73,17 +76,11 @@ describe('ContactFormContainer', () => {
     const fixture = TestBed.createComponent(ContactFormContainer);
     const component = fixture.componentInstance;
 
-    component['onFieldChange']({ field: 'fullName', value: 'Oliver Test' });
-    component['onFieldChange']({ field: 'streetAddress', value: 'Testvej 1' });
-    component['onFieldChange']({ field: 'postalCode', value: '2791' });
-    component['onFieldChange']({ field: 'phone', value: '30144514' });
-    component['onFieldChange']({ field: 'email', value: 'test@example.com' });
-    component['onFieldChange']({ field: 'subject', value: ContactFormSubject.Other });
-    component['onFieldChange']({ field: 'description', value: 'Jeg har brug for hjælp med VVS' });
-    component['onFieldChange']({ field: 'privacyAccepted', value: true });
+    fillValidForm(component);
     fixture.detectChanges();
 
-    await component['onSubmit']();
+    component['onSubmit'](new Event('submit'));
+    await fixture.whenStable();
 
     expect(gateway.submit).toHaveBeenCalledOnce();
   });
