@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostListener, input, output } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 
 import { FaIconComponent } from '../../../core/fontawesome';
 import { type NavLink } from '../../models/nav-link.model';
@@ -10,6 +18,9 @@ import { type NavLink } from '../../models/nav-link.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileDrawerComponent {
+  /** Avoid slide/fade-in on first paint when the drawer is already closed. */
+  protected readonly animate = signal(false);
+
   readonly open = input(false);
   readonly navLinks = input.required<NavLink[]>();
   readonly phoneHref = input.required<string>();
@@ -17,6 +28,10 @@ export class MobileDrawerComponent {
 
   readonly closeDrawer = output<void>();
   readonly navLinkClick = output<{ link: NavLink; event: MouseEvent }>();
+
+  constructor() {
+    afterNextRender(() => this.animate.set(true));
+  }
 
   @HostListener('document:keydown.escape')
   protected onEscape(): void {

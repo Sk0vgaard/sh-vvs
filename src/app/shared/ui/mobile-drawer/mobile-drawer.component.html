@@ -1,15 +1,21 @@
 <div
-  class="fixed inset-0 z-[var(--z-overlay)] bg-[var(--overlay)] transition-opacity duration-300 lg:hidden"
+  class="fixed inset-0 z-[var(--z-overlay)] hidden bg-[var(--overlay)] opacity-0 pointer-events-none lg:hidden"
   [class.hidden]="!open()"
   [class.opacity-0]="!open()"
   [class.pointer-events-none]="!open()"
+  [class.transition-opacity]="animate()"
+  [class.duration-300]="animate()"
   (click)="closeDrawer.emit()"
 ></div>
 
 <aside
   id="drawer"
-  class="fixed right-0 top-0 z-[var(--z-drawer)] flex h-full w-72 max-w-[80%] flex-col bg-surface shadow-drawer transition-transform duration-300 ease-decelerate lg:hidden"
+  class="fixed right-0 top-0 z-[var(--z-drawer)] flex h-full w-72 max-w-[80%] translate-x-full flex-col bg-surface shadow-drawer lg:hidden"
+  [class.translate-x-0]="open()"
   [class.translate-x-full]="!open()"
+  [class.transition-transform]="animate()"
+  [class.duration-300]="animate()"
+  [class.ease-decelerate]="animate()"
   [attr.aria-hidden]="!open()"
 >
   <div class="flex items-center justify-between px-5 py-4">
