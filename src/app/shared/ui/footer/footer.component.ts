@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { FaIconComponent } from '../../../core/fontawesome';
-import { SectionId } from '../../models/section-id';
+import { SectionIds } from '../../models/section-id';
 
 @Component({
   selector: 'sh-footer',
-  imports: [FaIconComponent],
+  imports: [FaIconComponent, RouterLink],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -15,5 +16,5 @@ export class FooterComponent {
   readonly emailHref = input.required<string>();
   readonly emailLabel = input.required<string>();
 
-  protected readonly SectionId = SectionId;
+  protected readonly SectionIds = SectionIds;
 }

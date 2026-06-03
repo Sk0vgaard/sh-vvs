@@ -2,6 +2,16 @@
 <main>
   <sh-home-banner (sectionNavigate)="scrollToSection($event)" />
   <sh-services-list-container />
+  <sh-section-placeholder
+    [sectionId]="SectionIds.About"
+    title="Om os"
+    description="Historie og team kommer her. Indhold udarbejdes i næste trin."
+  />
+  <sh-section-placeholder
+    [sectionId]="SectionIds.GuaranteePricing"
+    title="Garanti & priser"
+    description="Priser, garanti og TEKNIQ-information kommer her."
+  />
 </main>
 <sh-footer
   [phoneHref]="contact.phoneHref"

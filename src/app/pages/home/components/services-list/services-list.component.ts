@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FaIconComponent } from '../../../../core/fontawesome';
 import { type FaIconName } from '../../../../core/fontawesome.icons';
 import { MOBILE_SERVICES } from '../../../../shared/data/services.data';
-import { SectionId } from '../../../../shared/models/section-id';
+import { SectionIds } from '../../../../shared/models/section-id';
 import { type ServiceItem } from '../../../../shared/models/service-item.model';
 import { ServiceCardComponent } from '../../../../shared/ui/service-card/service-card.component';
 
@@ -31,7 +31,7 @@ export class ServicesListComponent {
   readonly services = input.required<ServiceItem[]>();
 
   protected readonly mobileServices = MOBILE_SERVICES;
-  protected readonly SectionId = SectionId;
+  protected readonly SectionIds = SectionIds;
   protected readonly serviceIcons = SERVICE_ICONS;
   protected readonly mobileServiceIcons = MOBILE_SERVICE_ICONS;
 }

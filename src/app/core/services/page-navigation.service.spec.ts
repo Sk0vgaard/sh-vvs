@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SectionId } from '../../shared/models/section-id';
+import { SectionIds } from '../../shared/models/section-id';
 import { PageNavigationService } from './page-navigation.service';
 
 function mockMatchMedia(reducedMotion: boolean): void {
@@ -34,12 +34,12 @@ describe('PageNavigationService', () => {
 
   it('scrolls to a section by id', async () => {
     const target = document.createElement('section');
-    target.id = SectionId.Services;
+    target.id = SectionIds.Services;
     document.body.appendChild(target);
     const scrollIntoView = vi.fn();
     target.scrollIntoView = scrollIntoView;
 
-    service.scrollToSection(SectionId.Services);
+    service.scrollToSection(SectionIds.Services);
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 
     expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });

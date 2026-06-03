@@ -1,4 +1,4 @@
-import { type ScrollSectionId, SectionId } from '../models/section-id';
+import { type ScrollSectionId, SectionIds } from '../models/section-id';
 
 export interface HomeSection {
   path: string;
@@ -6,8 +6,10 @@ export interface HomeSection {
 }
 
 export const HOME_SECTIONS: Record<ScrollSectionId, HomeSection> = {
-  [SectionId.Services]: { path: '/services', sectionId: SectionId.Services },
-  [SectionId.Contact]: { path: '/contact', sectionId: SectionId.Contact },
+  [SectionIds.Services]: { path: '/services', sectionId: SectionIds.Services },
+  [SectionIds.About]: { path: '/om-os', sectionId: SectionIds.About },
+  [SectionIds.GuaranteePricing]: { path: '/garanti-priser', sectionId: SectionIds.GuaranteePricing },
+  [SectionIds.Contact]: { path: '/contact', sectionId: SectionIds.Contact },
 };
 
 export const HOME_PATHS = ['/', ...Object.values(HOME_SECTIONS).map((section) => section.path)] as const;

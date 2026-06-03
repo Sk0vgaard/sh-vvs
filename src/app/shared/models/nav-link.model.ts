@@ -1,4 +1,4 @@
-import { isScrollSectionId, SectionId } from './section-id';
+import { isScrollSectionId, SectionIds, type SectionId } from './section-id';
 
 export interface NavLink {
   id: SectionId;
@@ -21,7 +21,7 @@ function isNavLinkActive(path: string, link: NavLink): boolean {
     return path === link.href;
   }
 
-  if (link.id === SectionId.Home) {
+  if (link.id === SectionIds.Home) {
     return path === '/';
   }
 

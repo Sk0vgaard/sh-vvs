@@ -7,14 +7,21 @@ import { PageNavigationService } from '../../core/services/page-navigation.servi
 import { AppHeaderContainer } from '../../layout/app-header/app-header.container';
 import { CONTACT } from '../../shared/data/contact.data';
 import { pathForSectionId, sectionIdForPath } from '../../shared/data/home-sections';
-import { type ScrollSectionId } from '../../shared/models/section-id';
+import { type ScrollSectionId, SectionIds } from '../../shared/models/section-id';
 import { FooterComponent } from '../../shared/ui/footer/footer.component';
 import { HomeBannerComponent } from './components/home-banner/home-banner.component';
+import { SectionPlaceholderComponent } from './components/section-placeholder/section-placeholder.component';
 import { ServicesListContainer } from './containers/services-list/services-list.container';
 
 @Component({
   selector: 'sh-home',
-  imports: [AppHeaderContainer, HomeBannerComponent, ServicesListContainer, FooterComponent],
+  imports: [
+    AppHeaderContainer,
+    HomeBannerComponent,
+    ServicesListContainer,
+    SectionPlaceholderComponent,
+    FooterComponent,
+  ],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,6 +30,7 @@ export class HomeComponent {
   private readonly pageNav = inject(PageNavigationService);
 
   protected readonly contact = CONTACT;
+  protected readonly SectionIds = SectionIds;
 
   constructor() {
     this.router.events

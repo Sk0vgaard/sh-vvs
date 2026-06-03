@@ -15,28 +15,38 @@
       <p class="eyebrow-on-dark">Din lokale VVS-installatør</p>
       <h1 class="mt-4 max-w-md text-display-xl text-on-dark">Kvalitet, pålidelighed og godt håndværk</h1>
       <p class="mt-5 max-w-md text-body-lg text-navy-muted">
-        Skovgaard &amp; Heide VVS ApS leverer professionelle VVS-løsninger til både private og erhverv. Vi går aldrig på
-        kompromis med kvaliteten – og vi overholder altid vores aftaler.
+        {{ leadCopy }}
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a
-          [href]="servicesPath"
-          class="btn btn-primary"
-          (click)="$event.preventDefault(); sectionNavigate.emit(SectionId.Services)"
-        >
-          <span>Vores ydelser</span>
-          <fa-icon icon="arrow-right" class="size-4" />
+        <a [href]="phoneHref" class="btn btn-primary">
+          <fa-icon icon="phone" class="size-4" />
+          <span>Ring {{ phoneLabel }}</span>
         </a>
         <a
           [href]="contactPath"
           class="btn btn-secondary"
-          (click)="$event.preventDefault(); sectionNavigate.emit(SectionId.Contact)"
+          (click)="$event.preventDefault(); sectionNavigate.emit(SectionIds.Contact)"
         >
-          <span>Kontakt os</span>
-          <fa-icon icon="arrow-right" class="size-4" />
+          <fa-icon icon="envelope" class="size-4" />
+          <span>Skriv til os</span>
         </a>
       </div>
+
+      @for (line of channelGuidanceLines; track line; let first = $first) {
+        <p class="max-w-md text-sm text-navy-muted" [class.mt-4]="first" [class.mt-2]="!first">{{ line }}</p>
+      }
+      <p class="mt-2 max-w-md text-sm text-navy-muted">{{ phoneHoursSummary }}</p>
+
+      <p class="mt-6">
+        <a
+          [href]="servicesPath"
+          class="text-sm font-semibold text-brand-on-dark underline-offset-2 hover:underline"
+          (click)="$event.preventDefault(); sectionNavigate.emit(SectionIds.Services)"
+        >
+          Se vores ydelser
+        </a>
+      </p>
 
       <ul class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-x-5">
         <li class="flex items-start gap-2.5">

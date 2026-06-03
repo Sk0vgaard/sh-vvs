@@ -1,4 +1,4 @@
-<footer [id]="SectionId.Contact" class="bg-navy-900 text-on-dark">
+<footer [id]="SectionIds.Contact" class="bg-navy-900 text-on-dark">
   <div class="shell grid gap-6 py-9 md:grid-cols-3 md:divide-x md:divide-white/10">
     <div class="flex items-center gap-4 md:justify-center">
       <span class="icon-badge">
@@ -27,5 +27,8 @@
         <span class="block font-semibold">Vi dækker hele Sjælland</span>
       </span>
     </div>
+  </div>
+  <div class="shell border-t border-white/10 py-4 text-center">
+    <a routerLink="/privatliv" class="text-sm text-navy-muted hover:text-on-dark">Privatlivspolitik</a>
   </div>
 </footer>

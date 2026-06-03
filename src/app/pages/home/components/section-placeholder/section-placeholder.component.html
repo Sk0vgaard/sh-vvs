@@ -1,0 +1,8 @@
+<section
+  [id]="sectionId()"
+  class="shell border-t border-ink-100 py-16 lg:py-20"
+  [attr.aria-labelledby]="sectionId() + '-heading'"
+>
+  <h2 [id]="sectionId() + '-heading'" class="text-h2 text-ink-900">{{ title() }}</h2>
+  <p class="mt-4 max-w-2xl text-body-lg text-ink-600">{{ description() }}</p>
+</section>
