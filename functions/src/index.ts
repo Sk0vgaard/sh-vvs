@@ -71,77 +71,80 @@ function validatePayload(body: unknown): ContactPayload | string {
   return data;
 }
 
-export const submitContact = onRequest({ region: 'europe-west1', cors: true, maxInstances: 10 }, async (req, res) => {
-  if (req.method === 'OPTIONS') {
-    res.status(204).send('');
-    return;
-  }
+export const submitContact = onRequest(
+  { region: 'europe-west1', cors: true, maxInstances: 10, invoker: 'public' },
+  async (req, res) => {
+    if (req.method === 'OPTIONS') {
+      res.status(204).send('');
+      return;
+    }
 
-  if (req.method !== 'POST') {
-    res.status(405).json({ message: 'Method not allowed' });
-    return;
-  }
+    if (req.method !== 'POST') {
+      res.status(405).json({ message: 'Method not allowed' });
+      return;
+    }
 
-  const validated = validatePayload(req.body);
-  if (typeof validated === 'string') {
-    res.status(400).json({ message: validated });
-    return;
-  }
+    const validated = validatePayload(req.body);
+    if (typeof validated === 'string') {
+      res.status(400).json({ message: validated });
+      return;
+    }
 
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const mailTo = process.env.CONTACT_TO_EMAIL ?? 'kontakt@shvvs.dk';
-  const mailFrom = process.env.CONTACT_FROM_EMAIL ?? smtpUser;
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const mailTo = process.env.CONTACT_TO_EMAIL ?? 'kontakt@shvvs.dk';
+    const mailFrom = process.env.CONTACT_FROM_EMAIL ?? smtpUser;
 
-  if (!smtpHost || !smtpUser || !smtpPass || !mailFrom) {
-    console.error('SMTP not configured');
-    res.status(503).json({ message: 'Mail er ikke konfigureret endnu.' });
-    return;
-  }
+    if (!smtpHost || !smtpUser || !smtpPass || !mailFrom) {
+      console.error('SMTP not configured');
+      res.status(503).json({ message: 'Mail er ikke konfigureret endnu.' });
+      return;
+    }
 
-  const transporter = nodemailer.createTransport({
-    host: smtpHost,
-    port: Number(process.env.SMTP_PORT ?? 587),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: { user: smtpUser, pass: smtpPass },
-  });
-
-  const subjectLabel = SUBJECT_LABELS[validated.subject] ?? validated.subject;
-  const text = [
-    `Ny henvendelse fra shvvs.dk`,
-    '',
-    `Navn: ${validated.fullName}`,
-    `Vejnavn: ${validated.streetAddress}`,
-    `Postnummer: ${validated.postalCode}`,
-    `Telefon: ${validated.phone}`,
-    `E-mail: ${validated.email}`,
-    `Emne: ${subjectLabel}`,
-    '',
-    'Beskrivelse:',
-    validated.description,
-  ].join('\n');
-
-  const attachments =
-    validated.images?.map((image) => ({
-      filename: image.name,
-      content: Buffer.from(image.dataBase64, 'base64'),
-      contentType: image.type,
-    })) ?? [];
-
-  try {
-    await transporter.sendMail({
-      from: mailFrom,
-      to: mailTo,
-      replyTo: validated.email,
-      subject: `[SH-VVS] ${subjectLabel} — ${validated.fullName}`,
-      text,
-      attachments,
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: Number(process.env.SMTP_PORT ?? 587),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: { user: smtpUser, pass: smtpPass },
     });
 
-    res.status(200).json({ ok: true });
-  } catch (error) {
-    console.error('Failed to send contact email', error);
-    res.status(500).json({ message: 'Kunne ikke sende e-mail.' });
+    const subjectLabel = SUBJECT_LABELS[validated.subject] ?? validated.subject;
+    const text = [
+      `Ny henvendelse fra shvvs.dk`,
+      '',
+      `Navn: ${validated.fullName}`,
+      `Vejnavn: ${validated.streetAddress}`,
+      `Postnummer: ${validated.postalCode}`,
+      `Telefon: ${validated.phone}`,
+      `E-mail: ${validated.email}`,
+      `Emne: ${subjectLabel}`,
+      '',
+      'Beskrivelse:',
+      validated.description,
+    ].join('\n');
+
+    const attachments =
+      validated.images?.map((image) => ({
+        filename: image.name,
+        content: Buffer.from(image.dataBase64, 'base64'),
+        contentType: image.type,
+      })) ?? [];
+
+    try {
+      await transporter.sendMail({
+        from: mailFrom,
+        to: mailTo,
+        replyTo: validated.email,
+        subject: `[SH-VVS] ${subjectLabel} — ${validated.fullName}`,
+        text,
+        attachments,
+      });
+
+      res.status(200).json({ ok: true });
+    } catch (error) {
+      console.error('Failed to send contact email', error);
+      res.status(500).json({ message: 'Kunne ikke sende e-mail.' });
+    }
   }
-});
+);
