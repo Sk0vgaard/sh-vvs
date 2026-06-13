@@ -1,3 +1,8 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
 @import '../theme.css';
 
 @layer base {
@@ -27,4 +32,14 @@
   fa-icon svg {
     display: block;
   }
+}
+
+/* Cookie consent — brand alignment */
+:root {
+  --cc-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cc-btn-primary-bg: #1a6df0;
+  --cc-btn-primary-border-color: #1a6df0;
+  --cc-btn-primary-hover-bg: #1559c7;
+  --cc-btn-primary-hover-border-color: #1559c7;
+  --cc-link-color: #1a6df0;
 }

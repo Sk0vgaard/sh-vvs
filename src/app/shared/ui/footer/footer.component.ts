@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { openCookiePreferences } from '../../../core/cookie-consent/cookie-consent';
 import { FaIconComponent } from '../../../core/fontawesome';
 
 @Component({
@@ -18,4 +19,8 @@ export class FooterComponent {
   readonly legalName = input.required<string>();
   readonly cvr = input.required<string>();
   readonly streetAddress = input.required<string>();
+
+  protected openCookieSettings(): void {
+    openCookiePreferences();
+  }
 }

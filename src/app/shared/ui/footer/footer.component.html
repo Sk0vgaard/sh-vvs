@@ -31,8 +31,10 @@
   <div class="shell border-t border-white/10 py-6 text-center text-sm text-navy-muted">
     <p>{{ legalName() }} · CVR {{ cvr() }}</p>
     <p class="mt-1">{{ streetAddress() }}</p>
-    <p class="mt-3">
+    <p class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
       <a routerLink="/privatliv" class="hover:text-on-dark">Privatlivspolitik</a>
+      <span aria-hidden="true">·</span>
+      <button type="button" class="hover:text-on-dark" (click)="openCookieSettings()">Cookie-indstillinger</button>
     </p>
   </div>
 </footer>
