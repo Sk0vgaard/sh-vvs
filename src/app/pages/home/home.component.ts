@@ -9,14 +9,12 @@ import { AppHeaderContainer } from '../../layout/app-header/app-header.container
 import { ABOUT_PARTNERS, ABOUT_STORY } from '../../shared/data/about/about.content';
 import { COMPANY } from '../../shared/data/company/company.data';
 import { CONTACT } from '../../shared/data/contact/contact.data';
-import { HERO_PHONE_HOURS_SUMMARY } from '../../shared/data/hero/hero.messages';
 import { sectionIdForPath } from '../../shared/data/navigation/home-sections';
 import { PRICING_ITEMS } from '../../shared/data/pricing/pricing.data';
 import { TRUST_CONTENT } from '../../shared/data/pricing/trust.content';
 import { type ScrollSectionId, SectionIds } from '../../shared/models/section-id';
 import { FooterComponent } from '../../shared/ui/footer/footer.component';
 import { AboutSectionComponent } from './components/about-section/about-section.component';
-import { ContactSectionComponent } from './components/contact-section/contact-section.component';
 import { GuaranteePricingComponent } from './components/guarantee-pricing/guarantee-pricing.component';
 import { HomeBannerComponent } from './components/home-banner/home-banner.component';
 import { ContactFormContainer } from './containers/contact-form/contact-form.container';
@@ -30,7 +28,6 @@ import { ServicesListContainer } from './containers/services-list/services-list.
     ServicesListContainer,
     AboutSectionComponent,
     GuaranteePricingComponent,
-    ContactSectionComponent,
     ContactFormContainer,
     FooterComponent,
   ],
@@ -55,8 +52,6 @@ export class HomeComponent {
   ];
 
   protected readonly trust = TRUST_CONTENT;
-
-  protected readonly phoneHoursSummary = HERO_PHONE_HOURS_SUMMARY;
 
   constructor() {
     this.router.events

@@ -146,12 +146,12 @@
       ></textarea>
       <p
         id="contact-description-hint"
-        class="text-right text-sm tabular-nums"
-        [class.text-ink-600]="descriptionMinMet()"
+        class="text-sm"
+        [class.text-ink-700]="descriptionMinMet()"
         [class.text-danger]="!descriptionMinMet()"
         aria-live="polite"
       >
-        {{ descriptionLength() }} / {{ descriptionMinLength }}
+        Mindst {{ descriptionMinLength }} tegn
       </p>
       @if (showFieldError(contactForm().description()); as _) {
         @if (contactForm().description().errors()[0]; as error) {
@@ -196,7 +196,7 @@
           </ul>
         }
       </div>
-      <p class="text-sm text-ink-600">{{ imageHelp() }}</p>
+      <p class="text-sm text-ink-700">{{ imageHelp() }}</p>
       @if (fileError(); as message) {
         <p class="text-sm text-danger">{{ message }}</p>
       }

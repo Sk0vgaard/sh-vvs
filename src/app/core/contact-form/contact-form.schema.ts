@@ -77,7 +77,7 @@ export function contactFormSchema(schemaPath: SchemaPathTree<ContactFormValues>,
     if (trimmed.length < CONTACT_FORM_DESCRIPTION_MIN_LENGTH) {
       return {
         kind: 'minLength',
-        message: `Beskrivelsen skal være mindst ${CONTACT_FORM_DESCRIPTION_MIN_LENGTH}.`,
+        message: `Beskrivelsen skal være mindst ${CONTACT_FORM_DESCRIPTION_MIN_LENGTH} tegn.`,
       };
     }
     return undefined;

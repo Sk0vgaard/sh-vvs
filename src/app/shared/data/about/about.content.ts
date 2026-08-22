@@ -9,7 +9,7 @@ export const ABOUT_STORY = {
   heading: 'Om Skovgaard & Heide VVS',
   paragraphs: [
     'Vi er en mindre VVS-virksomhed med base i Dragør og fokus på København og omegn — med samme engagement over for private og erhverv.',
-    'Bag os står 16 års samlet erfaring. Vi går op i kvalitet, tydelige aftaler og personlig kontakt fra første henvendelse til færdigt arbejde.',
+    'Bag os står 16 års erfaring. Vi går op i kvalitet, tydelige aftaler og personlig kontakt fra første henvendelse til færdigt arbejde.',
   ],
 } as const;
 
