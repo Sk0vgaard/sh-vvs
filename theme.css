@@ -22,6 +22,7 @@
   /* ---- Color: brand ---- */
   --color-brand: #1A6DF0;
   --color-brand-hover: #1559C7;
+  --color-brand-text: #1559C7; /* AA on white and surface-subtle (≥4.5:1) */
   --color-brand-tint: #E8F1FE;
   --color-brand-on-dark: #6DAEFF;
 
@@ -34,6 +35,7 @@
   /* ---- Color: ink (light-mode text ramp) ---- */
   --color-ink-900: #0F1B2D;
   --color-ink-700: #2B3A4D;
+  --color-ink-600: #435264;
   --color-ink-500: #5B6B7B;
   --color-ink-400: #8A98A6;
 
@@ -185,7 +187,7 @@
 
   /* Eyebrow label */
   .eyebrow {
-    @apply text-eyebrow uppercase text-brand;
+    @apply text-eyebrow uppercase text-brand-text;
   }
   .eyebrow-on-dark {
     @apply text-eyebrow uppercase text-brand-on-dark;

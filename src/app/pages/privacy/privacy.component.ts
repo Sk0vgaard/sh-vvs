@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { openCookiePreferences } from '../../core/cookie-consent/cookie-consent';
 import { AppHeaderContainer } from '../../layout/app-header/app-header.container';
 import {
   PRIVACY_POLICY_CONTACT_EMAIL,
@@ -23,6 +22,9 @@ export class PrivacyComponent {
   protected readonly sections = PRIVACY_POLICY_SECTIONS;
 
   protected openCookieSettings(): void {
-    openCookiePreferences();
+    void import('../../core/cookie-consent/cookie-consent').then(async (module) => {
+      await module.initCookieConsent();
+      module.openCookiePreferences();
+    });
   }
 }
