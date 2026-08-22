@@ -6,8 +6,8 @@ import { firstInvalidContactFormField, focusContactFormField } from '../../../..
 import { ContactFormSubmissionGateway } from '../../../../core/contact-form/contact-form-submission.gateway';
 import { createContactForm, createContactFormModel } from '../../../../core/contact-form/contact-form.factory';
 import {
-  EMPTY_CONTACT_FORM_VALUES,
   type ContactFormSubmitPayload,
+  EMPTY_CONTACT_FORM_VALUES,
 } from '../../../../core/contact-form/contact-form.model';
 import { CONTACT_FORM_SUBJECTS } from '../../../../shared/data/contact/contact-form-subjects';
 import { CONTACT } from '../../../../shared/data/contact/contact.data';
@@ -17,8 +17,10 @@ import {
   CONTACT_FORM_IMAGE_HELP,
   CONTACT_FORM_SUCCESS_MESSAGE,
   CONTACT_FORM_VALIDATION_SUMMARY,
+  CONTACT_RESPONSE_PROMISE,
 } from '../../../../shared/data/contact/contact.messages';
 import { type ContactFormSubject } from '../../../../shared/models/contact-form-subject';
+import { SectionIds } from '../../../../shared/models/section-id';
 import { AcuteCalloutComponent } from '../../../../shared/ui/acute-callout/acute-callout.component';
 import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
 
@@ -26,15 +28,18 @@ import { ContactFormComponent } from '../../components/contact-form/contact-form
   selector: 'sh-contact-form-container',
   imports: [AcuteCalloutComponent, ContactFormComponent],
   templateUrl: './contact-form.container.html',
+  host: { class: 'contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormContainer {
   private readonly gateway = inject(ContactFormSubmissionGateway);
   private readonly injector = inject(Injector);
 
+  protected readonly SectionIds = SectionIds;
   protected readonly contact = CONTACT;
   protected readonly subjects = CONTACT_FORM_SUBJECTS;
   protected readonly acuteTitle = CONTACT_ACUTE_CALLOUT;
+  protected readonly responsePromise = CONTACT_RESPONSE_PROMISE;
   protected readonly imageHelp = CONTACT_FORM_IMAGE_HELP;
 
   protected readonly model = createContactFormModel();
@@ -67,7 +72,7 @@ export class ContactFormContainer {
     event.preventDefault();
     this.submitAttempted.set(true);
 
-    submit(this.contactForm, async () => {
+    void submit(this.contactForm, async () => {
       const values = this.model();
       const files = this.selectedFiles();
       const imagePayloads = await filesToImagePayloads(files);

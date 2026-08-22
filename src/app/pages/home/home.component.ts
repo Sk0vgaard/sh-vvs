@@ -9,7 +9,6 @@ import { AppHeaderContainer } from '../../layout/app-header/app-header.container
 import { ABOUT_PARTNERS, ABOUT_STORY } from '../../shared/data/about/about.content';
 import { COMPANY } from '../../shared/data/company/company.data';
 import { CONTACT } from '../../shared/data/contact/contact.data';
-import { CONTACT_RESPONSE_PROMISE } from '../../shared/data/contact/contact.messages';
 import { HERO_PHONE_HOURS_SUMMARY } from '../../shared/data/hero/hero.messages';
 import { sectionIdForPath } from '../../shared/data/navigation/home-sections';
 import { PRICING_ITEMS } from '../../shared/data/pricing/pricing.data';
@@ -54,8 +53,9 @@ export class HomeComponent {
     TRUST_CONTENT.insuredLabel,
     TRUST_CONTENT.experienceLabel,
   ];
+
   protected readonly trust = TRUST_CONTENT;
-  protected readonly responsePromise = CONTACT_RESPONSE_PROMISE;
+
   protected readonly phoneHoursSummary = HERO_PHONE_HOURS_SUMMARY;
 
   constructor() {

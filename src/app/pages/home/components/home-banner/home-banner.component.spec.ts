@@ -36,6 +36,7 @@ describe('HomeBannerComponent', () => {
     skriv.click();
 
     expect(emit).toHaveBeenCalledWith(SectionIds.Contact);
+    expect(skriv.className).toContain('lg:hidden');
   });
 
   it('includes acute vs non-urgent channel guidance', () => {

@@ -26,5 +26,6 @@ describe('NavbarComponent', () => {
 
     expect(links.length).toBe(NAV_LINKS.length);
     expect(links[0].textContent?.trim()).toBe('Forside');
+    expect(links[1].textContent?.trim()).toBe('Kontakt');
   });
 });

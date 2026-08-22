@@ -25,7 +25,7 @@
         </a>
         <a
           [href]="contactPath"
-          class="btn btn-secondary"
+          class="btn btn-secondary lg:hidden"
           (click)="$event.preventDefault(); sectionNavigate.emit(SectionIds.Contact)"
         >
           <fa-icon icon="envelope" class="size-4" />
@@ -72,6 +72,8 @@
         </li>
       </ul>
     </div>
-    <div aria-hidden="true" class="hidden lg:block"></div>
+    <div class="pb-12 lg:flex lg:h-0 lg:min-h-full lg:flex-col lg:py-20 lg:pl-8">
+      <ng-content />
+    </div>
   </div>
 </section>

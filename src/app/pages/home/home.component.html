@@ -1,6 +1,8 @@
 <sh-app-header-container />
 <main>
-  <sh-home-banner (sectionNavigate)="scrollToSection($event)" />
+  <sh-home-banner (sectionNavigate)="scrollToSection($event)">
+    <sh-contact-form-container />
+  </sh-home-banner>
   <sh-services-list-container />
   <sh-guarantee-pricing
     [sectionId]="SectionIds.GuaranteePricing"
@@ -23,11 +25,8 @@
     [emailHref]="contact.emailHref"
     [emailLabel]="contact.emailLabel"
     [serviceArea]="company.serviceArea"
-    [responsePromise]="responsePromise"
     [phoneHoursSummary]="phoneHoursSummary"
-  >
-    <sh-contact-form-container />
-  </sh-contact-section>
+  />
 </main>
 <sh-footer
   [phoneHref]="contact.phoneHref"

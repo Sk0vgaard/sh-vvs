@@ -216,7 +216,7 @@
     @apply text-placeholder;
   }
   .field-label {
-    @apply block mb-1.5 text-sm font-semibold text-ink-700;
+    @apply block text-sm font-semibold text-ink-700;
   }
 
   /* ------------------------------------------------------------- MOLECULES */
@@ -225,6 +225,18 @@
   .card {
     @apply flex h-full flex-col bg-surface border border-border rounded-lg p-6 shadow-card
            transition-shadow duration-200 ease-standard hover:shadow-card-hover;
+  }
+
+  /* Hero contact form overlay. --hero-form-surface-alpha is tunable (desktop only). */
+  .hero-form-card {
+    --hero-form-surface-alpha: 50%;
+    @apply flex flex-col rounded-lg border border-border bg-surface p-4 shadow-card
+           scroll-mt-24 lg:h-full lg:min-h-0 lg:p-5 lg:scroll-mt-28 lg:backdrop-blur-md;
+  }
+  @media (width >= 64rem) {
+    .hero-form-card {
+      background-color: color-mix(in srgb, var(--color-surface) var(--hero-form-surface-alpha), transparent);
+    }
   }
 
   /* Circular icon badge (footer contact, etc.) */

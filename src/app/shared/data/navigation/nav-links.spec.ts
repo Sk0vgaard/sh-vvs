@@ -30,4 +30,14 @@ describe('withActiveNavLinks', () => {
 
     expect(links.find((link) => link.id === SectionIds.About)?.active).toBe(true);
   });
+
+  it('places Kontakt immediately after Forside', () => {
+    expect(NAV_LINKS.map((link) => link.id)).toEqual([
+      SectionIds.Home,
+      SectionIds.Contact,
+      SectionIds.Services,
+      SectionIds.GuaranteePricing,
+      SectionIds.About,
+    ]);
+  });
 });

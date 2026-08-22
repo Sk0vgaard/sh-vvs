@@ -84,4 +84,25 @@ describe('ContactFormContainer', () => {
 
     expect(gateway.submit).toHaveBeenCalledOnce();
   });
+
+  it('places id=contact on the form card and keeps the header after success', async () => {
+    const fixture = TestBed.createComponent(ContactFormContainer);
+    const component = fixture.componentInstance;
+
+    fillValidForm(component);
+    fixture.detectChanges();
+
+    const card = (fixture.nativeElement as HTMLElement).querySelector('#contact');
+    expect(card).toBeTruthy();
+    expect(card?.textContent).toContain('Skriv til os');
+    expect(card?.textContent).toContain('Vi svarer på hverdage inden for 24 timer.');
+
+    component['onSubmit'](new Event('submit'));
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(card?.textContent).toContain('Skriv til os');
+    expect(card?.textContent).toContain('Tak for din henvendelse');
+    expect(card?.textContent).not.toContain('Send henvendelse');
+  });
 });
