@@ -3,30 +3,38 @@
   <sh-home-banner (sectionNavigate)="scrollToSection($event)">
     <sh-contact-form-container />
   </sh-home-banner>
-  <sh-services-list-container />
-  <sh-guarantee-pricing
-    [sectionId]="SectionIds.GuaranteePricing"
-    [prices]="prices"
-    [trustBullets]="trustBullets"
-    [tekniqLabel]="trust.tekniqLabel"
-    [tekniqUrl]="trust.tekniqUrl"
-    [guaranteeIntro]="trust.guaranteeIntro"
-    [quoteNote]="trust.quoteNote"
-  />
-  <sh-about-section
-    [sectionId]="SectionIds.About"
-    [heading]="aboutStory.heading"
-    [paragraphs]="aboutStory.paragraphs"
-    [partners]="aboutPartners"
-  />
+  @defer (on idle; prefetch on immediate) {
+    <sh-services-list-container />
+    <sh-guarantee-pricing
+      [sectionId]="SectionIds.GuaranteePricing"
+      [prices]="prices"
+      [trustBullets]="trustBullets"
+      [tekniqLabel]="trust.tekniqLabel"
+      [tekniqUrl]="trust.tekniqUrl"
+      [guaranteeIntro]="trust.guaranteeIntro"
+      [quoteNote]="trust.quoteNote"
+    />
+    <sh-about-section
+      [sectionId]="SectionIds.About"
+      [heading]="aboutStory.heading"
+      [paragraphs]="aboutStory.paragraphs"
+      [partners]="aboutPartners"
+    />
+  } @placeholder {
+    <div class="min-h-[70rem]" aria-hidden="true"></div>
+  }
 </main>
-<sh-footer
-  [phoneHref]="contact.phoneHref"
-  [phoneLabel]="contact.phoneLabel"
-  [emailHref]="contact.emailHref"
-  [emailLabel]="contact.emailLabel"
-  [serviceArea]="company.serviceArea"
-  [legalName]="company.legalName"
-  [cvr]="company.cvr"
-  [streetAddress]="company.streetAddress"
-/>
+@defer (on idle; prefetch on immediate) {
+  <sh-footer
+    [phoneHref]="contact.phoneHref"
+    [phoneLabel]="contact.phoneLabel"
+    [emailHref]="contact.emailHref"
+    [emailLabel]="contact.emailLabel"
+    [serviceArea]="company.serviceArea"
+    [legalName]="company.legalName"
+    [cvr]="company.cvr"
+    [streetAddress]="company.streetAddress"
+  />
+} @placeholder {
+  <div class="min-h-48 bg-navy-900" aria-hidden="true"></div>
+}

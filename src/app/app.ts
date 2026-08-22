@@ -10,7 +10,16 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   constructor() {
     afterNextRender(() => {
-      void import('./core/cookie-consent/cookie-consent').then((module) => module.initCookieConsent());
+      const start = (): void => {
+        void import('./core/cookie-consent/cookie-consent').then((module) => module.initCookieConsent());
+      };
+
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(start, { timeout: 4000 });
+        return;
+      }
+
+      setTimeout(start, 2000);
     });
   }
 }

@@ -6,21 +6,28 @@ import { type ScrollSectionId } from '../../shared/models/section-id';
 
 @Injectable({ providedIn: 'root' })
 export class PageNavigationService {
+  private static readonly SECTION_SCROLL_FRAMES = 120;
+
   public scrollToTop(): void {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   }
 
   public scrollToSection(sectionId: ScrollSectionId): void {
-    requestAnimationFrame(() => {
+    const tryScroll = (remaining: number): void => {
       const target = document.getElementById(sectionId);
-      if (!target) {
+      if (target) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
         return;
       }
 
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-    });
+      if (remaining > 0) {
+        requestAnimationFrame(() => tryScroll(remaining - 1));
+      }
+    };
+
+    tryScroll(PageNavigationService.SECTION_SCROLL_FRAMES);
   }
 
   /** Updates the URL and scrolls; re-scrolls when the section URL is already active. */

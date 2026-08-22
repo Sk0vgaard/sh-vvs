@@ -48,6 +48,24 @@ describe('PageNavigationService', () => {
     target.remove();
   });
 
+  it('retries scroll until the section exists', async () => {
+    const scrollIntoView = vi.fn();
+
+    service.scrollToSection(SectionIds.Services);
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
+    const target = document.createElement('section');
+    target.id = SectionIds.Services;
+    target.scrollIntoView = scrollIntoView;
+    document.body.appendChild(target);
+
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
+    expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
+
+    target.remove();
+  });
+
   it('uses instant scroll when reduced motion is preferred', () => {
     mockMatchMedia(true);
 
