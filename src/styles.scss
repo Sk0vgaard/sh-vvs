@@ -34,6 +34,9 @@
   }
 }
 
+/* Must be global: CSS imported from the lazy cookie-consent chunk is not injected in production builds. */
+@import 'vanilla-cookieconsent/dist/cookieconsent.css';
+
 /* Cookie consent — brand alignment */
 :root {
   --cc-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
