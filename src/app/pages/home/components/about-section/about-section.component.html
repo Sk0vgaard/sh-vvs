@@ -10,12 +10,27 @@
   <div class="mt-12 grid gap-8 md:grid-cols-2">
     @for (partner of partners(); track partner.name) {
       <article class="card">
-        <div
-          class="mb-4 flex h-40 items-center justify-center rounded-md bg-surface-subtle text-sm text-ink-500"
-          aria-hidden="true"
-        >
-          Foto kommer snart
-        </div>
+        @if (partner.image; as image) {
+          <picture class="mb-4 block overflow-hidden rounded-md">
+            <source type="image/avif" [srcset]="image.srcsetAvif" />
+            <source type="image/webp" [srcset]="image.srcsetWebp" />
+            <img
+              [src]="image.src"
+              [alt]="image.alt"
+              [width]="image.width"
+              [height]="image.height"
+              decoding="async"
+              class="h-40 w-full object-cover"
+            />
+          </picture>
+        } @else {
+          <div
+            class="mb-4 flex h-40 items-center justify-center rounded-md bg-surface-subtle text-sm text-ink-500"
+            aria-hidden="true"
+          >
+            Foto kommer snart
+          </div>
+        }
         <h3 class="text-h3 text-ink-900">{{ partner.name }}</h3>
         <p class="mt-1 text-sm font-semibold text-ink-600">
           {{ partner.titles.join(' · ') }}

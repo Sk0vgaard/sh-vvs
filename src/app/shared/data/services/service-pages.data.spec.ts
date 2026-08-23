@@ -59,9 +59,8 @@ describe('service landing pages', () => {
   it('gives concrete examples of akut help', () => {
     const service = servicePageBySlug('service-akut');
     const copy = [
-      
-     ,
-    ser  ...(service?.sections.flatMap((section) => [section.heading, ...section.paragraphs]) ?? []),
+      service?.lede,
+      ...(service?.sections.flatMap((section) => [section.heading, ...section.paragraphs]) ?? []),
     ].join(' ');
 
     expect(copy).toMatch(/rørbrud/);

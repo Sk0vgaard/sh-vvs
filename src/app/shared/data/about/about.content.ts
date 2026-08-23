@@ -1,8 +1,18 @@
+export interface AboutPartnerImage {
+  alt: string;
+  width: number;
+  height: number;
+  src: string;
+  srcsetAvif: string;
+  srcsetWebp: string;
+}
+
 export interface AboutPartner {
   name: string;
   titles: string[];
   email: string;
   bio: string;
+  image?: AboutPartnerImage;
 }
 
 export const ABOUT_STORY = {
