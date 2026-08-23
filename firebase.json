@@ -4,7 +4,7 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
       {
-        "source": "/index.html",
+        "source": "**/index.html",
         "headers": [
           {
             "key": "Cache-Control",
@@ -48,10 +48,6 @@
       {
         "source": "/api/contact",
         "function": "submitContact"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   },

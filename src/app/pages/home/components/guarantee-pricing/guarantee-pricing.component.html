@@ -4,6 +4,7 @@
     <h2 class="mt-2 text-h2 text-ink-900">Garanti & priser</h2>
     <p class="mx-auto mt-4 max-w-2xl text-body-lg text-ink-600">{{ guaranteeIntro() }}</p>
     <p class="mx-auto mt-3 max-w-2xl text-body text-ink-600">{{ quoteNote() }}</p>
+    <p class="mx-auto mt-6 max-w-2xl text-left text-body text-ink-700">{{ citabilityParagraph() }}</p>
 
     <ul class="mx-auto mt-8 grid w-fit max-w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-12">
       @for (bullet of trustBullets(); track bullet) {

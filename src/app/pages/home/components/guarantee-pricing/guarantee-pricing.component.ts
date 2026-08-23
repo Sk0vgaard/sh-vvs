@@ -15,4 +15,5 @@ export class GuaranteePricingComponent {
   readonly tekniqUrl = input.required<string>();
   readonly guaranteeIntro = input.required<string>();
   readonly quoteNote = input.required<string>();
+  readonly citabilityParagraph = input.required<string>();
 }

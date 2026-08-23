@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { pathForSectionId } from '../../shared/data/navigation/home-sections';
@@ -7,13 +8,22 @@ import { type ScrollSectionId } from '../../shared/models/section-id';
 @Injectable({ providedIn: 'root' })
 export class PageNavigationService {
   private static readonly SECTION_SCROLL_FRAMES = 120;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   public scrollToTop(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   }
 
   public scrollToSection(sectionId: ScrollSectionId): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const tryScroll = (remaining: number): void => {
       const target = document.getElementById(sectionId);
       if (target) {

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { injectPageSeo, PRIVACY_SEO } from '../../core/seo/page-seo';
 import { AppHeaderContainer } from '../../layout/app-header/app-header.container';
 import {
   PRIVACY_POLICY_CONTACT_EMAIL,
@@ -16,6 +17,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivacyComponent {
+  constructor() {
+    injectPageSeo()(PRIVACY_SEO);
+  }
+
   protected readonly title = PRIVACY_POLICY_TITLE;
   protected readonly lastUpdated = PRIVACY_POLICY_LAST_UPDATED;
   protected readonly contactEmail = PRIVACY_POLICY_CONTACT_EMAIL;

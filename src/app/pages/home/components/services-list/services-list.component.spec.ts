@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { registerFaIconsForTesting } from '../../../../core/fontawesome.testing';
 import { SERVICES } from '../../../../shared/data/services/services.data';
@@ -10,6 +11,7 @@ describe('ServicesListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ServicesListComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     registerFaIconsForTesting();
@@ -24,5 +26,21 @@ describe('ServicesListComponent', () => {
 
     expect(fixture.nativeElement.querySelectorAll('.sm\\:hidden sh-service-card').length).toBe(3);
     expect(desktopGrid.querySelectorAll('sh-service-card').length).toBe(SERVICES.length);
+  });
+
+  it('links landing cards to dedicated /ydelser URLs', () => {
+    const desktopGrid = fixture.nativeElement.querySelector('.hidden.sm\\:grid');
+    const hrefs = [...desktopGrid.querySelectorAll('a[href^="/ydelser/"]')].map((anchor: HTMLAnchorElement) =>
+      anchor.getAttribute('href')
+    );
+
+    expect(hrefs).toEqual(
+      expect.arrayContaining([
+        '/ydelser/badevaerelse',
+        '/ydelser/varme-fjernvarme',
+        '/ydelser/service-akut',
+        '/ydelser/erhverv',
+      ])
+    );
   });
 });

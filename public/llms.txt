@@ -7,6 +7,10 @@ Skovgaard & Heide VVS ApS (S&H VVS) servicerer private og erhverv med samme enga
 ## Sider
 
 - [Forside](https://shvvs.dk/): Ydelser, om os, garanti og priser, og kontakt — ét dokument
+- [Badeværelse](https://shvvs.dk/ydelser/badevaerelse): Autoriseret VVS til badeværelse i København
+- [Varme og fjernvarme](https://shvvs.dk/ydelser/varme-fjernvarme): Fjernvarme, radiatorer og varmt vand i København og omegn
+- [Akut service](https://shvvs.dk/ydelser/service-akut): Akut VVS og planlagt service i København
+- [Erhverv](https://shvvs.dk/ydelser/erhverv): VVS til butikker, kontorer og ejendomme i København
 - [Privatlivspolitik](https://shvvs.dk/privatliv): GDPR, billeder og cookies
 
 Ydelser, om os, garanti og priser, og kontakt er sektioner på forsiden (kanonisk URL: https://shvvs.dk/).

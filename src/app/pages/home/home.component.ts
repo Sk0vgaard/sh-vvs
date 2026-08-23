@@ -1,9 +1,11 @@
-import { afterNextRender, ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { afterNextRender, ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 import { toPriceDisplayItems } from '../../core/pricing/pricing-display.model';
+import { HOME_SEO, injectPageSeo } from '../../core/seo/page-seo';
 import { PageNavigationService } from '../../core/services/page-navigation.service';
 import { AppHeaderContainer } from '../../layout/app-header/app-header.container';
 import { ABOUT_PARTNERS, ABOUT_STORY } from '../../shared/data/about/about.content';
@@ -37,6 +39,8 @@ import { ServicesListContainer } from './containers/services-list/services-list.
 export class HomeComponent {
   private readonly router = inject(Router);
   private readonly pageNav = inject(PageNavigationService);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly applyPageSeo = injectPageSeo();
 
   protected readonly contact = CONTACT;
   protected readonly company = COMPANY;
@@ -54,6 +58,8 @@ export class HomeComponent {
   protected readonly trust = TRUST_CONTENT;
 
   constructor() {
+    this.applyPageSeo(HOME_SEO);
+
     this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -69,6 +75,10 @@ export class HomeComponent {
   }
 
   private syncScrollToRoute(url: string, isInitial = false): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const path = url.split('?')[0];
 
     if (path === '/') {
