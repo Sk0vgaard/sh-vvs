@@ -1,7 +1,14 @@
 <sh-app-header-container />
 <main>
   <sh-home-banner (sectionNavigate)="scrollToSection($event)">
-    <sh-contact-form-container />
+    @defer (on idle; hydrate on viewport) {
+      <sh-contact-form-container />
+    } @placeholder {
+      <article [id]="SectionIds.Contact" class="hero-form-card min-h-96" aria-label="Kontaktformularen indlæses">
+        <p class="eyebrow">Kontakt</p>
+        <p class="mt-2 text-sm text-ink-600">Kontaktformularen indlæses…</p>
+      </article>
+    }
   </sh-home-banner>
   <sh-services-list-container />
   <sh-guarantee-pricing

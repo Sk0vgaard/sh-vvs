@@ -1,4 +1,4 @@
-import { inject, provideAppInitializer } from '@angular/core';
+import { type EnvironmentProviders, inject, provideAppInitializer } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
@@ -11,7 +11,7 @@ export type { IconDefinition, IconName, IconPrefix } from '@fortawesome/fontawes
 export { APP_ICON_MAP, appIcons, registerAppIcons } from './fontawesome.icons';
 export type { FaIconName } from './fontawesome.icons';
 
-export function provideFontAwesome() {
+export function provideFontAwesome(): EnvironmentProviders {
   return provideAppInitializer(() => {
     registerAppIcons(inject(FaIconLibrary));
   });

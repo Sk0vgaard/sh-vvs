@@ -8,7 +8,7 @@
  * text-display-xl, ease-standard, etc.
  * ========================================================================== */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* ---- Breakpoints ----
@@ -16,90 +16,90 @@
    * so no override is needed. Listed here only for documentation. */
 
   /* ---- Fonts ---- */
-  --font-sans: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Inter", sans-serif;
+  --font-sans: 'Inter Variable', 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Variable', sans-serif;
 
   /* ---- Color: brand ---- */
-  --color-brand: #1A6DF0;
-  --color-brand-hover: #1559C7;
-  --color-brand-text: #1559C7; /* AA on white and surface-subtle (≥4.5:1) */
-  --color-brand-tint: #E8F1FE;
-  --color-brand-on-dark: #6DAEFF;
+  --color-brand: #1a6df0;
+  --color-brand-hover: #1559c7;
+  --color-brand-text: #1559c7; /* AA on white and surface-subtle (≥4.5:1) */
+  --color-brand-tint: #e8f1fe;
+  --color-brand-on-dark: #6daeff;
 
   /* ---- Color: navy (dark surfaces) ---- */
-  --color-navy-900: #0A1E3F;
-  --color-navy-800: #0F2549;
-  --color-navy-700: #16315C;
-  --color-navy-muted: #AEBCCD;
+  --color-navy-900: #0a1e3f;
+  --color-navy-800: #0f2549;
+  --color-navy-700: #16315c;
+  --color-navy-muted: #aebccd;
 
   /* ---- Color: ink (light-mode text ramp) ---- */
-  --color-ink-900: #0F1B2D;
-  --color-ink-700: #2B3A4D;
+  --color-ink-900: #0f1b2d;
+  --color-ink-700: #2b3a4d;
   --color-ink-600: #435264;
-  --color-ink-500: #5B6B7B;
-  --color-ink-400: #8A98A6;
+  --color-ink-500: #5b6b7b;
+  --color-ink-400: #8a98a6;
 
   /* ---- Color: surface ---- */
-  --color-surface: #FFFFFF;
-  --color-surface-subtle: #F4F6F8;
-  --color-border: #E6EAEF;
-  --color-border-strong: #CDD5DE;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f4f6f8;
+  --color-border: #e6eaef;
+  --color-border-strong: #cdd5de;
 
   /* ---- Color: text-on ---- */
-  --color-on-primary: #FFFFFF;
-  --color-on-dark: #FFFFFF;
+  --color-on-primary: #ffffff;
+  --color-on-dark: #ffffff;
 
   /* ---- Color: feedback (UNVERIFIED — confirm with brand) ---- */
-  --color-success: #1FA971;
-  --color-success-bg: #E7F6EF;
-  --color-warning: #E0A100;
-  --color-warning-bg: #FBF3DC;
-  --color-danger: #D7373F;
-  --color-danger-bg: #FBE9EA;
-  --color-info: #1A6DF0;
-  --color-info-bg: #E8F1FE;
+  --color-success: #1fa971;
+  --color-success-bg: #e7f6ef;
+  --color-warning: #e0a100;
+  --color-warning-bg: #fbf3dc;
+  --color-danger: #d7373f;
+  --color-danger-bg: #fbe9ea;
+  --color-info: #1a6df0;
+  --color-info-bg: #e8f1fe;
 
   /* ---- Color: state ---- */
-  --color-disabled-bg: #EEF1F4;
-  --color-disabled-text: #A6B0BC;
-  --color-focus-ring: #1A6DF0;
-  --color-focus-ring-dark: #5C9CFF;
+  --color-disabled-bg: #eef1f4;
+  --color-disabled-text: #a6b0bc;
+  --color-focus-ring: #1a6df0;
+  --color-focus-ring-dark: #5c9cff;
 
   /* ---- Color: form ---- */
-  --color-field-bg: #FFFFFF;
-  --color-field-border: #CDD5DE;
-  --color-field-border-focus: #1A6DF0;
-  --color-placeholder: #8A98A6;
+  --color-field-bg: #ffffff;
+  --color-field-border: #cdd5de;
+  --color-field-border-focus: #1a6df0;
+  --color-placeholder: #8a98a6;
 
   /* ---- Font sizes (fluid) ----
    * Tailwind v4 reads --text-*, --text-*--line-height, --text-*--font-weight,
    * --text-*--letter-spacing. Big headings use clamp() to scale mobile→desktop. */
-  --text-eyebrow: 0.8125rem;            /* 13px */
+  --text-eyebrow: 0.8125rem; /* 13px */
   --text-eyebrow--line-height: 1.2;
   --text-eyebrow--font-weight: 700;
   --text-eyebrow--letter-spacing: 0.12em;
 
-  --text-display-xl: clamp(2rem, 6vw, 3.25rem);   /* 32 → 52px */
+  --text-display-xl: clamp(2rem, 6vw, 3.25rem); /* 32 → 52px */
   --text-display-xl--line-height: 1.1;
   --text-display-xl--font-weight: 800;
   --text-display-xl--letter-spacing: -0.02em;
 
-  --text-h2: clamp(1.625rem, 4vw, 2.125rem);      /* 26 → 34px */
+  --text-h2: clamp(1.625rem, 4vw, 2.125rem); /* 26 → 34px */
   --text-h2--line-height: 1.2;
   --text-h2--font-weight: 700;
   --text-h2--letter-spacing: -0.01em;
 
-  --text-h3: 1.125rem;                  /* 18px */
+  --text-h3: 1.125rem; /* 18px */
   --text-h3--line-height: 1.3;
   --text-h3--font-weight: 700;
 
-  --text-body-lg: 1.0625rem;            /* 17px */
+  --text-body-lg: 1.0625rem; /* 17px */
   --text-body-lg--line-height: 1.6;
 
-  --text-body: 0.9375rem;               /* 15px */
+  --text-body: 0.9375rem; /* 15px */
   --text-body--line-height: 1.6;
 
-  --text-link: 0.875rem;                /* 14px */
+  --text-link: 0.875rem; /* 14px */
   --text-link--line-height: 1.4;
   --text-link--font-weight: 600;
 
@@ -127,8 +127,8 @@
  * ========================================================================== */
 :root {
   /* Scrims / overlays */
-  --overlay: rgba(10, 30, 63, 0.55);        /* modal / drawer scrim */
-  --hover-overlay: rgba(15, 27, 45, 0.04);  /* subtle row/card hover */
+  --overlay: rgba(10, 30, 63, 0.55); /* modal / drawer scrim */
+  --hover-overlay: rgba(15, 27, 45, 0.04); /* subtle row/card hover */
 
   /* Z-index scale */
   --z-base: 0;
@@ -151,7 +151,6 @@
  * Mobile-first: full-width buttons below sm, inline from sm up.
  * ========================================================================== */
 @layer components {
-
   /* ----------------------------------------------------------------- ATOMS */
 
   /* Button */
