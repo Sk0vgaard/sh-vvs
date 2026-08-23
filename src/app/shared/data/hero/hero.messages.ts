@@ -17,9 +17,9 @@ export const HERO_LEAD_COPY =
 export const HERO_IMAGE = {
   alt: 'Moderne, mørkt badeværelse med rundt spejl og bruseniche',
   width: 1600,
-  height: 1200,
+  height: 994,
   sizes: '(min-width: 1024px) 56vw, 100vw',
   src: '/images/hero-800.webp',
-  srcsetAvif: '/images/hero-800.avif 800w, /images/hero-1600.avif 1600w',
-  srcsetWebp: '/images/hero-800.webp 800w, /images/hero-1600.webp 1600w',
+  srcsetAvif: '/images/hero-480.avif 480w, /images/hero-800.avif 800w, /images/hero-1600.avif 1600w',
+  srcsetWebp: '/images/hero-480.webp 480w, /images/hero-800.webp 800w, /images/hero-1600.webp 1600w',
 } as const;

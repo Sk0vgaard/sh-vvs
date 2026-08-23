@@ -7,7 +7,7 @@
         <li>
           <a
             [href]="link.href"
-            class="text-sm font-medium pb-1"
+            class="pb-1 text-sm font-semibold"
             [class.border-b-2]="link.active"
             [class.border-brand]="link.active"
             [class.text-brand]="link.active"
@@ -23,7 +23,7 @@
     <div class="flex items-center gap-2">
       <a
         [href]="phoneHref()"
-        class="btn btn-primary btn-sm shrink-0 gap-1.5 px-2.5 py-1.5 text-xs font-medium sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm sm:font-semibold"
+        class="btn btn-primary btn-sm shrink-0 gap-1.5 px-2.5 py-1.5 text-xs font-semibold sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
       >
         <fa-icon icon="phone" class="size-3.5 sm:size-4" />
         <span>{{ phoneLabel() }}</span>
