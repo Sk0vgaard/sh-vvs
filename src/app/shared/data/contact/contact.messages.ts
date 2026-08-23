@@ -9,4 +9,4 @@ export const CONTACT_FORM_ERROR_MESSAGE = 'Noget gik galt. Tjek felterne og prø
 export const CONTACT_FORM_VALIDATION_SUMMARY = 'Tjek de markerede felter og ret dem, før du sender.';
 
 export const CONTACT_FORM_IMAGE_HELP =
-  'Ved tilbud: vedhæft gerne op til 3 billeder af problemet eller rummet (valgfrit).';
+  'Vedhæft gerne op til 3 billeder af problemet eller rummet (valgfrit).';

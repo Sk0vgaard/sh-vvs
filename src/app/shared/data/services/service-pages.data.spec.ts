@@ -1,4 +1,8 @@
-import { SERVICE_PAGES, servicePageBySlug, servicePageWordCount } from './service-pages.data';
+import { SERVICE_PAGES, type ServicePage, servicePageBySlug, servicePageWordCount } from './service-pages.data';
+
+function pageParagraphs(page: ServicePage): string[] {
+  return page.sections.flatMap((section) => section.paragraphs);
+}
 
 describe('service landing pages', () => {
   it('exposes the four crawlable ydelser slugs', () => {
@@ -10,16 +14,24 @@ describe('service landing pages', () => {
     ]);
   });
 
-  it.each(SERVICE_PAGES)('$slug has a unique København H1, Dragør base, and 600+ words', (page) => {
+  it.each(SERVICE_PAGES)('$slug has a unique København H1, Dragør base, and scannable copy', (page: ServicePage) => {
     expect(page.path).toBe(`/ydelser/${page.slug}`);
     expect(page.heading).toMatch(/København/);
     expect(servicePageBySlug(page.slug)?.heading).toBe(page.heading);
-    expect(servicePageWordCount(page)).toBeGreaterThanOrEqual(600);
+    expect(servicePageWordCount(page)).toBeGreaterThanOrEqual(250);
 
-    const body = [page.lede, ...page.sections.flatMap((section) => section.paragraphs)].join(' ');
+    const body = [page.lede, ...pageParagraphs(page)].join(' ');
     expect(body).toMatch(/Dragør/);
+    expect(body).toMatch(/omegn/);
+    expect(body).not.toMatch(/ind til København/);
     expect(body).toMatch(/TEKNIQ/);
-    expect(body).toMatch(/Oliver Skovgaard Rasmussen|Nikolai Heide/);
+    expect(body).toMatch(/Skovgaard & Heide/);
+    expect(body).not.toMatch(/Oliver Skovgaard Rasmussen|Nikolai Heide/);
+
+    const blocks = [page.lede, ...pageParagraphs(page)];
+    for (const block of blocks) {
+      expect(block.length).toBeLessThanOrEqual(420);
+    }
   });
 
   it('fails a city swap test: Aarhus would not fit this copy', () => {
@@ -30,6 +42,32 @@ describe('service landing pages', () => {
 
   it('returns undefined for an unknown slug', () => {
     expect(servicePageBySlug('ukendt')).toBeUndefined();
+  });
+
+  it('talks about cold and hot rooms instead of plant jargon', () => {
+    const heat = servicePageBySlug('varme-fjernvarme');
+    const copy = heat
+      ? [heat.heading, heat.lede, ...heat.sections.flatMap((section) => [section.heading, ...section.paragraphs])].join(
+          ' '
+        )
+      : '';
+
+    expect(copy).not.toMatch(/rød pibe/i);
+    expect(heat?.sections[0]?.heading).toBe('Når nogle rum er kolde — og andre for varme');
+  });
+
+  it('gives concrete examples of akut help', () => {
+    const service = servicePageBySlug('service-akut');
+    const copy = [
+      
+     ,
+    ser  ...(service?.sections.flatMap((section) => [section.heading, ...section.paragraphs]) ?? []),
+    ].join(' ');
+
+    expect(copy).toMatch(/rørbrud/);
+    expect(copy).toMatch(/sprunget slange/);
+    expect(copy).toMatch(/vand i loftet/);
+    expect(copy).toMatch(/frostvejr/);
   });
 
   it('gives each page a unique title, description, and H1', () => {

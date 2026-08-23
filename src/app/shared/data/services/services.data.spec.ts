@@ -1,4 +1,4 @@
-import { MOBILE_SERVICES, SERVICES } from './services.data';
+import { SERVICES } from './services.data';
 
 /** Each service line should speak to both residential and commercial customers. */
 const RESIDENTIAL_PATTERN = /private|bolig/i;
@@ -10,17 +10,13 @@ describe('services copy balance', () => {
     expect(description).toMatch(COMMERCIAL_PATTERN);
   });
 
-  it.each(MOBILE_SERVICES)('mobile $title description covers private and commercial customers', ({ description }) => {
-    expect(description).toMatch(RESIDENTIAL_PATTERN);
-    expect(description).toMatch(COMMERCIAL_PATTERN);
-  });
-
-  it('keeps three grouped mobile cards aligned with desktop offerings', () => {
-    expect(MOBILE_SERVICES).toHaveLength(3);
-    expect(MOBILE_SERVICES.map((service) => service.title)).toEqual([
-      'Installation & varme',
+  it('uses the same five offerings on every viewport', () => {
+    expect(SERVICES.map((service) => service.title)).toEqual([
+      'VVS-installation',
+      'Varme & fjernvarme',
       'Badeværelser',
-      'Service & erhverv',
+      'Akut service & reparation',
+      'Erhverv',
     ]);
   });
 });

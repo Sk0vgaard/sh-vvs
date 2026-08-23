@@ -1,23 +1,27 @@
 <sh-app-header-container />
 <main class="shell py-12 lg:py-16">
   @if (page(); as page) {
-    <article class="mx-auto max-w-3xl">
+    <article class="mx-auto max-w-2xl">
       <p class="eyebrow">Ydelser</p>
       <h1 class="mt-2 text-display-xl text-ink-900">{{ page.heading }}</h1>
-      <p class="mt-4 text-body-lg text-ink-700">{{ page.lede }}</p>
+      <p class="mt-4 text-body-lg text-ink-700">
+        <ng-container [ngTemplateOutlet]="linkedCopy" [ngTemplateOutletContext]="{ $implicit: page.lede }" />
+      </p>
 
       @for (section of page.sections; track section.heading) {
-        <section class="mt-10">
+        <section class="mt-12">
           <h2 class="text-h2 text-ink-900">{{ section.heading }}</h2>
           @for (paragraph of section.paragraphs; track paragraph) {
-            <p class="mt-3 text-body text-ink-700">{{ paragraph }}</p>
+            <p class="mt-4 max-w-prose text-body text-ink-700">
+              <ng-container [ngTemplateOutlet]="linkedCopy" [ngTemplateOutletContext]="{ $implicit: paragraph }" />
+            </p>
           }
         </section>
       }
 
       <p class="mt-12 flex flex-col gap-3 sm:flex-row">
         <a [href]="contact.phoneHref" class="btn btn-primary">Ring {{ contact.phoneLabel }}</a>
-        <a routerLink="/contact" class="btn btn-secondary">Skriv for tilbud</a>
+        <a routerLink="/contact" class="btn btn-outline">Skriv for tilbud</a>
       </p>
     </article>
   } @else {
@@ -40,3 +44,19 @@
   [cvr]="company.cvr"
   [streetAddress]="company.streetAddress"
 />
+
+<ng-template #linkedCopy let-value>
+  @for (part of copyParts(value); track $index) {
+    @if (part.routerLink) {
+      <a [routerLink]="part.routerLink" class="font-semibold text-brand hover:underline">{{ part.text }}</a>
+    } @else if (part.external) {
+      <a href="https://www.tekniq.dk/" class="font-semibold text-brand hover:underline" target="_blank" rel="noopener noreferrer">{{
+        part.text
+      }}</a>
+    } @else if (part.href) {
+      <a href="tel:+4530144514" class="font-semibold text-brand hover:underline">30&nbsp;14&nbsp;45&nbsp;14</a>
+    } @else {
+      {{ part.text }}
+    }
+  }
+</ng-template>

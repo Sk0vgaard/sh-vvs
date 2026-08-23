@@ -1,5 +1,5 @@
 <form class="mt-4 flex min-h-0 flex-1 flex-col" (submit)="submitForm.emit($event)" novalidate>
-  <div class="flex min-h-0 flex-1 flex-col gap-3 lg:overflow-y-auto lg:overscroll-y-contain">
+  <div class="flex min-h-0 flex-1 flex-col gap-3 lg:overflow-y-auto lg:overscroll-y-contain lg:pr-3">
     <ng-content />
 
     <div class="field-group">
@@ -34,7 +34,7 @@
           aria-required="true"
           [class.field-error]="showFieldError(contactForm().streetAddress())"
           [formField]="contactForm().streetAddress"
-          autocomplete="street-address"
+          autocomplete="address-line1"
         />
         @if (showFieldError(contactForm().streetAddress()); as _) {
           @if (contactForm().streetAddress().errors()[0]; as error) {
@@ -163,7 +163,7 @@
     <div class="field-group">
       <span class="field-label" id="contact-images-label">Billeder (valgfrit)</span>
       <div
-        class="rounded-sm border border-dashed border-field-border bg-surface-subtle p-3"
+        class="w-fit max-w-full rounded-sm border border-dashed border-field-border bg-surface-subtle p-2.5"
         [class.border-danger]="fileError()"
         [class.bg-danger-bg]="fileError()"
       >
@@ -179,7 +179,7 @@
         <div class="flex items-center gap-3">
           <label
             for="contact-images"
-            class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-md border border-field-border bg-surface px-4 text-sm font-semibold text-ink-700 shadow-sm hover:border-brand hover:bg-brand-tint hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 outline-focus-ring"
+            class="inline-flex min-h-9 shrink-0 cursor-pointer items-center justify-center rounded-md border border-field-border bg-surface px-3 py-1.5 text-sm font-semibold text-ink-700 shadow-sm hover:border-brand hover:bg-brand-tint hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 outline-focus-ring"
           >
             Vælg billeder
           </label>
@@ -189,21 +189,22 @@
           </p>
         </div>
         @if (selectedImageNames().length > 0) {
-          <ul class="mt-3 flex flex-col gap-1.5 border-t border-border pt-3" aria-label="Valgte billeder">
+          <h3 class="sr-only">Valgte billeder</h3>
+          <ul class="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
             @for (name of selectedImageNames(); track name) {
               <li class="truncate text-sm text-ink-700" [title]="name">{{ name }}</li>
             }
           </ul>
         }
       </div>
-      <p class="text-sm text-ink-700">{{ imageHelp() }}</p>
+      <p class="text-sm italic text-ink-700">{{ imageHelp() }}</p>
       @if (fileError(); as message) {
         <p class="text-sm text-danger">{{ message }}</p>
       }
     </div>
   </div>
 
-  <div class="mt-3 flex shrink-0 flex-col gap-3 border-t border-border pt-3">
+  <div class="mt-3 flex shrink-0 flex-col gap-3 border-t border-border pt-3 lg:pr-3">
     <div class="field-group">
       <label class="flex min-h-11 cursor-pointer items-center gap-2.5 text-sm leading-5 text-ink-700">
         <span class="flex size-4 shrink-0 items-center justify-center">

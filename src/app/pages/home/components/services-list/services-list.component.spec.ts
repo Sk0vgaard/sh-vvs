@@ -21,26 +21,27 @@ describe('ServicesListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders grouped compact cards on mobile and full cards on desktop', () => {
+  it('renders the same cards on mobile and desktop', () => {
     const desktopGrid = fixture.nativeElement.querySelector('.hidden.sm\\:grid');
 
-    expect(fixture.nativeElement.querySelectorAll('.sm\\:hidden sh-service-card').length).toBe(3);
+    expect(fixture.nativeElement.querySelectorAll('.sm\\:hidden sh-service-card').length).toBe(SERVICES.length);
     expect(desktopGrid.querySelectorAll('sh-service-card').length).toBe(SERVICES.length);
   });
 
-  it('links landing cards to dedicated /ydelser URLs', () => {
+  it('links the same /ydelser URLs on mobile and desktop', () => {
+    const mobileGrid = fixture.nativeElement.querySelector('.sm\\:hidden');
     const desktopGrid = fixture.nativeElement.querySelector('.hidden.sm\\:grid');
-    const hrefs = [...desktopGrid.querySelectorAll('a[href^="/ydelser/"]')].map((anchor: HTMLAnchorElement) =>
-      anchor.getAttribute('href')
-    );
+    const hrefs = (root: HTMLElement) =>
+      [...root.querySelectorAll<HTMLAnchorElement>('a[href^="/ydelser/"]')].map((anchor) => anchor.getAttribute('href'));
 
-    expect(hrefs).toEqual(
+    expect(hrefs(mobileGrid)).toEqual(hrefs(desktopGrid));
+    expect(hrefs(desktopGrid)).toEqual(
       expect.arrayContaining([
         '/ydelser/badevaerelse',
         '/ydelser/varme-fjernvarme',
         '/ydelser/service-akut',
         '/ydelser/erhverv',
-      ])
+      ]),
     );
   });
 });

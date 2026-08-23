@@ -56,3 +56,4 @@ ui-debug.log
 *-firebase-adminsdk-*.json
 *serviceAccount*.json
 shvvs.dk-audit/*
+tmp-parse-lh.mjs

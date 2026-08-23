@@ -6,21 +6,19 @@
       <span class="mx-auto mt-4 block h-0.5 w-12 bg-brand"></span>
     </div>
 
-    <!-- Mobile: 3 grouped compact cards -->
     <div class="mt-8 grid grid-cols-1 gap-3 sm:hidden">
-      @for (service of mobileServices; track service.title) {
+      @for (service of services(); track service.title) {
         <sh-service-card
           [compact]="true"
           [title]="service.title"
           [description]="service.description"
           [href]="service.href"
         >
-          <fa-icon serviceCardIcon [icon]="mobileServiceIcons[service.title]" class="size-7 text-brand" />
+          <fa-icon serviceCardIcon [icon]="serviceIcons[service.title]" class="size-7 text-brand" />
         </sh-service-card>
       }
     </div>
 
-    <!-- Desktop / tablet: full 5-card grid -->
     <div class="mt-12 hidden grid-cols-1 items-stretch gap-5 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
       @for (service of services(); track service.title) {
         <sh-service-card [title]="service.title" [description]="service.description" [href]="service.href">
