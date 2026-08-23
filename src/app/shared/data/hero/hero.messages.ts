@@ -1,3 +1,9 @@
+export const HERO_EYEBROW = 'Din lokale VVS-installatør';
+
+export const HERO_HEADING = 'Autoriseret VVS i København og omegn';
+
+export const HERO_SUBHEAD = 'Kvalitet, pålidelighed og godt håndværk';
+
 export const HERO_CHANNEL_GUIDANCE_LINES = [
   'Ring ved akut skade.',
   'Kontakt os for tilbud, service eller planlægning.',

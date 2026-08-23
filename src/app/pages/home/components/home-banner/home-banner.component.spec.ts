@@ -24,6 +24,13 @@ describe('HomeBannerComponent', () => {
     return fixture.nativeElement as HTMLElement;
   }
 
+  it('uses an H1 that names the trade and the city', () => {
+    const heading = root().querySelector('h1');
+
+    expect(heading?.textContent).toContain('Autoriseret VVS i København og omegn');
+    expect(root().textContent).toContain('Kvalitet, pålidelighed og godt håndværk');
+  });
+
   it('renders Ring CTA with canonical phone href', () => {
     const ring = root().querySelector('a[href="' + CONTACT.phoneHref + '"]');
 

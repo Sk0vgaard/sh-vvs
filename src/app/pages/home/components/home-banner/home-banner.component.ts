@@ -4,8 +4,11 @@ import { FaIconComponent } from '../../../../core/fontawesome';
 import { CONTACT } from '../../../../shared/data/contact/contact.data';
 import {
   HERO_CHANNEL_GUIDANCE_LINES,
+  HERO_EYEBROW,
+  HERO_HEADING,
   HERO_LEAD_COPY,
   HERO_PHONE_HOURS_SUMMARY,
+  HERO_SUBHEAD,
 } from '../../../../shared/data/hero/hero.messages';
 import { HOME_SECTIONS } from '../../../../shared/data/navigation/home-sections';
 import { type ScrollSectionId, SectionIds } from '../../../../shared/models/section-id';
@@ -24,6 +27,9 @@ export class HomeBannerComponent {
   protected readonly contactPath = HOME_SECTIONS[SectionIds.Contact].path;
   protected readonly phoneHref = CONTACT.phoneHref;
   protected readonly phoneLabel = CONTACT.phoneLabel;
+  protected readonly eyebrow = HERO_EYEBROW;
+  protected readonly heading = HERO_HEADING;
+  protected readonly subhead = HERO_SUBHEAD;
   protected readonly channelGuidanceLines = HERO_CHANNEL_GUIDANCE_LINES;
   protected readonly phoneHoursSummary = HERO_PHONE_HOURS_SUMMARY;
   protected readonly leadCopy = HERO_LEAD_COPY;

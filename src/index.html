@@ -19,6 +19,7 @@
       content="Autoriseret VVS-installatør i København og omegn. Ring ved akut skade, eller skriv for tilbud og service."
     />
     <meta property="og:image" content="https://shvvs.dk/images/hero-1600.webp" />
+    <meta property="og:image:alt" content="Moderne, mørkt badeværelse med rundt spejl og bruseniche" />
     <meta name="theme-color" content="#0A1E3F" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link
@@ -34,11 +35,15 @@
       {
         "@context": "https://schema.org",
         "@type": "Plumber",
+        "@id": "https://shvvs.dk/#plumber",
         "name": "Skovgaard & Heide VVS ApS",
         "url": "https://shvvs.dk/",
         "telephone": "+45 30 14 45 14",
         "email": "kontakt@shvvs.dk",
         "image": "https://shvvs.dk/images/hero-1600.webp",
+        "vatID": "DK46497066",
+        "taxID": "46497066",
+        "priceRange": "DKK 869-2700",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Weendam Allé 1",
@@ -46,13 +51,30 @@
           "addressLocality": "Dragør",
           "addressCountry": "DK"
         },
-        "areaServed": "København",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "07:00",
-          "closes": "16:00"
-        }
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 55.59353047,
+          "longitude": 12.58456609
+        },
+        "areaServed": [
+          { "@type": "City", "name": "København" },
+          { "@type": "City", "name": "Dragør" }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:00",
+            "closes": "16:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "name": "Akut",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ]
       }
     </script>
   </head>

@@ -6,15 +6,14 @@ Skovgaard & Heide VVS ApS (S&H VVS) servicerer private og erhverv med samme enga
 
 ## Sider
 
-- [Forside](https://shvvs.dk/): Ydelser, om os, garanti og priser, og kontakt
-- [Ydelser](https://shvvs.dk/services): Professionelle VVS-løsninger til privat og erhverv
-- [Om os](https://shvvs.dk/om-os): Virksomheden og de to medejere
-- [Garanti og priser](https://shvvs.dk/garanti-priser): Timepris, akut, serviceaftale og TEKNIQ-garanti
-- [Kontakt](https://shvvs.dk/contact): Kontaktformular, telefon og e-mail
+- [Forside](https://shvvs.dk/): Ydelser, om os, garanti og priser, og kontakt — ét dokument
 - [Privatlivspolitik](https://shvvs.dk/privatliv): GDPR, billeder og cookies
+
+Ydelser, om os, garanti og priser, og kontakt er sektioner på forsiden (kanonisk URL: https://shvvs.dk/).
 
 ## Kontakt
 
+- Adresse: Weendam Allé 1, 2791 Dragør
 - Telefon: [+45 30 14 45 14](tel:+4530144514)
 - E-mail: [kontakt@shvvs.dk](mailto:kontakt@shvvs.dk)
 - Område: Primært København og omegn — større opgaver efter aftale
