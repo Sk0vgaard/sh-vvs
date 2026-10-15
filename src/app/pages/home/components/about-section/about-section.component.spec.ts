@@ -22,9 +22,12 @@ describe('AboutSectionComponent', () => {
       alt: 'Nikolai Heide, indehaver og autoriseret VVS-installatør hos Skovgaard & Heide VVS',
       width: 800,
       height: 800,
-      src: '/images/nikolai-heide.webp',
-      srcsetAvif: '/images/nikolai-heide.avif 800w',
-      srcsetWebp: '/images/nikolai-heide.webp 800w',
+      src: '/images/nikolai-heide-800.webp',
+      srcsetAvif:
+        '/images/nikolai-heide-400.avif 400w, /images/nikolai-heide-800.avif 800w, /images/nikolai-heide-1200.avif 1200w',
+      srcsetWebp:
+        '/images/nikolai-heide-400.webp 400w, /images/nikolai-heide-800.webp 800w, /images/nikolai-heide-1200.webp 1200w',
+      sizes: '(min-width: 1024px) 500px, (min-width: 768px) 44vw, calc(100vw - 80px)',
     },
   };
 

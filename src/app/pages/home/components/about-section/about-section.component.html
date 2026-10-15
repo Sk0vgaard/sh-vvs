@@ -12,20 +12,22 @@
       <article class="card">
         @if (partner.image; as image) {
           <picture class="mb-4 block overflow-hidden rounded-md">
-            <source type="image/avif" [srcset]="image.srcsetAvif" />
-            <source type="image/webp" [srcset]="image.srcsetWebp" />
+            <source type="image/avif" [srcset]="image.srcsetAvif" [sizes]="image.sizes" />
+            <source type="image/webp" [srcset]="image.srcsetWebp" [sizes]="image.sizes" />
+            <!-- [html-validate-disable-next element-required-attributes, wcag/h37 -- src and alt are supplied via Angular property bindings] -->
             <img
               [src]="image.src"
               [alt]="image.alt"
               [width]="image.width"
               [height]="image.height"
+              loading="lazy"
               decoding="async"
-              class="h-40 w-full object-cover"
+              class="aspect-square w-full object-cover"
             />
           </picture>
         } @else {
           <div
-            class="mb-4 flex h-40 items-center justify-center rounded-md bg-surface-subtle text-sm text-ink-500"
+            class="mb-4 flex aspect-square items-center justify-center rounded-md bg-surface-subtle text-sm text-ink-500"
             aria-hidden="true"
           >
             Foto kommer snart
