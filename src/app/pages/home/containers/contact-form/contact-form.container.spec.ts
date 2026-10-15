@@ -6,6 +6,7 @@ import {
   type ContactFormSubmitResult,
 } from '../../../../core/contact-form/contact-form-submission.gateway';
 import { registerFaIconsForTesting } from '../../../../core/fontawesome.testing';
+import { CONTACT } from '../../../../shared/data/contact/contact.data';
 import { ContactFormSubject } from '../../../../shared/models/contact-form-subject';
 import { ContactFormContainer } from './contact-form.container';
 
@@ -45,7 +46,7 @@ describe('ContactFormContainer', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component['onSubmit'](new Event('submit'));
+    await component['onSubmit'](new Event('submit'));
     fixture.detectChanges();
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 
@@ -63,7 +64,7 @@ describe('ContactFormContainer', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
 
-    component['onSubmit'](new Event('submit'));
+    await component['onSubmit'](new Event('submit'));
     expect(component['submitDisabled']()).toBe(true);
 
     fillValidForm(component);
@@ -79,10 +80,11 @@ describe('ContactFormContainer', () => {
     fillValidForm(component);
     fixture.detectChanges();
 
-    component['onSubmit'](new Event('submit'));
+    await component['onSubmit'](new Event('submit'));
     await fixture.whenStable();
 
     expect(gateway.submit).toHaveBeenCalledOnce();
+    expect(component['submitAttempted']()).toBe(false);
   });
 
   it('places id=contact on the form card and keeps the header after success', async () => {
@@ -97,12 +99,26 @@ describe('ContactFormContainer', () => {
     expect(card?.textContent).toContain('Skriv til os');
     expect(card?.textContent).toContain('Vi svarer på hverdage inden for 24 timer.');
 
-    component['onSubmit'](new Event('submit'));
+    await component['onSubmit'](new Event('submit'));
     await fixture.whenStable();
     fixture.detectChanges();
 
     expect(card?.textContent).toContain('Skriv til os');
     expect(card?.textContent).toContain('Tak for din henvendelse');
     expect(card?.textContent).not.toContain('Send henvendelse');
+  });
+
+  it('shows the acute callout in the header with a Ring-only tel link', () => {
+    const fixture = TestBed.createComponent(ContactFormContainer);
+    fixture.detectChanges();
+
+    const card = fixture.nativeElement as HTMLElement;
+    const header = card.querySelector('header');
+    const acuteRing = header?.querySelector('sh-acute-callout a[href="' + CONTACT.phoneHref + '"]');
+
+    expect(header?.textContent).toContain('Akut skade?');
+    expect(acuteRing?.textContent?.trim()).toBe('Ring');
+    expect(header?.textContent).not.toContain(CONTACT.phoneLabel);
+    expect(card.querySelector('sh-contact-form sh-acute-callout')).toBeNull();
   });
 });

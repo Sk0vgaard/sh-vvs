@@ -1,14 +1,14 @@
-<aside class="rounded-md border border-amber-300 bg-amber-50 px-3 py-2.5 text-amber-950" role="note">
-  <div class="flex gap-2.5 sm:items-center sm:gap-3">
-    <fa-icon icon="phone" class="mt-0.5 size-4 shrink-0 sm:mt-0" />
-    <div class="min-w-0 flex-1 sm:flex sm:items-center sm:gap-3">
-      <p class="whitespace-pre-line text-sm font-semibold">{{ title() }}</p>
-      <a
-        [href]="phoneHref()"
-        class="mt-1 inline-flex min-h-11 items-center font-semibold text-brand hover:underline sm:mt-0 sm:shrink-0"
-      >
-        {{ phoneLabel() }}
-      </a>
-    </div>
+<aside
+  class="flex h-full items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 py-2 text-amber-950"
+  role="note"
+>
+  <div class="flex items-center gap-2">
+    <fa-icon icon="phone" class="size-3.5 shrink-0" />
+    <p class="text-xs font-semibold leading-snug sm:text-sm">
+      {{ headline() }}
+      <br />
+      <a [href]="phoneHref()" class="font-semibold text-brand hover:underline">{{ callToAction() }}</a>
+      {{ note() }}
+    </p>
   </div>
 </aside>

@@ -6,10 +6,12 @@ import { FaIconComponent } from '../../../core/fontawesome';
   selector: 'sh-acute-callout',
   imports: [FaIconComponent],
   templateUrl: './acute-callout.component.html',
+  host: { class: 'block h-full' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AcuteCalloutComponent {
-  readonly title = input.required<string>();
+  readonly headline = input.required<string>();
   readonly phoneHref = input.required<string>();
-  readonly phoneLabel = input.required<string>();
+  readonly callToAction = input.required<string>();
+  readonly note = input.required<string>();
 }

@@ -1,24 +1,25 @@
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, inject, Injector, signal } from '@angular/core';
 import { submit } from '@angular/forms/signals';
 
-import { filesToImagePayloads } from '../../../../core/contact-form/contact-form-files';
-import { firstInvalidContactFormField, focusContactFormField } from '../../../../core/contact-form/contact-form-focus';
-import { ContactFormSubmissionGateway } from '../../../../core/contact-form/contact-form-submission.gateway';
 import { createContactForm, createContactFormModel } from '../../../../core/contact-form/contact-form.factory';
 import {
   type ContactFormSubmitPayload,
   EMPTY_CONTACT_FORM_VALUES,
 } from '../../../../core/contact-form/contact-form.model';
-import { CONTACT_FORM_SUBJECTS } from '../../../../shared/data/contact/contact-form-subjects';
+import { filesToImagePayloads } from '../../../../core/contact-form/contact-form-files';
+import { firstInvalidContactFormField, focusContactFormField } from '../../../../core/contact-form/contact-form-focus';
+import { ContactFormSubmissionGateway } from '../../../../core/contact-form/contact-form-submission.gateway';
 import { CONTACT } from '../../../../shared/data/contact/contact.data';
 import {
-  CONTACT_ACUTE_CALLOUT,
+  CONTACT_ACUTE_CALL_TO_ACTION,
+  CONTACT_ACUTE_HEADLINE,
+  CONTACT_ACUTE_NOTE,
   CONTACT_FORM_ERROR_MESSAGE,
-  CONTACT_FORM_IMAGE_HELP,
   CONTACT_FORM_SUCCESS_MESSAGE,
   CONTACT_FORM_VALIDATION_SUMMARY,
   CONTACT_RESPONSE_PROMISE,
 } from '../../../../shared/data/contact/contact.messages';
+import { CONTACT_FORM_SUBJECTS } from '../../../../shared/data/contact/contact-form-subjects';
 import { type ContactFormSubject } from '../../../../shared/models/contact-form-subject';
 import { SectionIds } from '../../../../shared/models/section-id';
 import { AcuteCalloutComponent } from '../../../../shared/ui/acute-callout/acute-callout.component';
@@ -38,9 +39,10 @@ export class ContactFormContainer {
   protected readonly SectionIds = SectionIds;
   protected readonly contact = CONTACT;
   protected readonly subjects = CONTACT_FORM_SUBJECTS;
-  protected readonly acuteTitle = CONTACT_ACUTE_CALLOUT;
+  protected readonly acuteHeadline = CONTACT_ACUTE_HEADLINE;
+  protected readonly acuteCallToAction = CONTACT_ACUTE_CALL_TO_ACTION;
+  protected readonly acuteNote = CONTACT_ACUTE_NOTE;
   protected readonly responsePromise = CONTACT_RESPONSE_PROMISE;
-  protected readonly imageHelp = CONTACT_FORM_IMAGE_HELP;
 
   protected readonly model = createContactFormModel();
   protected readonly selectedFiles = signal<File[]>([]);
@@ -68,55 +70,62 @@ export class ContactFormContainer {
     this.fileError.set(undefined);
   }
 
-  protected onSubmit(event: Event): void {
+  protected async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
+
+    await submit(this.contactForm, {
+      action: async () => this.sendContactInquiry(),
+      onInvalid: () => this.handleInvalidSubmit(),
+    });
+  }
+
+  private handleInvalidSubmit(): void {
     this.submitAttempted.set(true);
 
-    void submit(this.contactForm, async () => {
-      const values = this.model();
-      const files = this.selectedFiles();
-      const imagePayloads = await filesToImagePayloads(files);
-      if (typeof imagePayloads === 'string') {
-        this.fileError.set(imagePayloads);
-        return;
-      }
-
-      const payload: ContactFormSubmitPayload = {
-        fullName: values.fullName.trim(),
-        streetAddress: values.streetAddress.trim(),
-        postalCode: values.postalCode.trim(),
-        phone: values.phone.trim(),
-        email: values.email.trim(),
-        subject: values.subject as ContactFormSubject,
-        description: values.description.trim(),
-        privacyAccepted: true,
-        images: imagePayloads,
-      };
-
-      this.submitting.set(true);
-      this.errorMessage.set(undefined);
-
-      const result = await this.gateway.submit(payload);
-      this.submitting.set(false);
-
-      if (result.ok) {
-        this.successMessage.set(CONTACT_FORM_SUCCESS_MESSAGE);
-        this.model.set({ ...EMPTY_CONTACT_FORM_VALUES });
-        this.contactForm().reset();
-        this.selectedFiles.set([]);
-        this.submitAttempted.set(false);
-        return;
-      }
-
-      this.errorMessage.set(result.message || CONTACT_FORM_ERROR_MESSAGE);
-    });
-
-    if (this.contactForm().invalid()) {
-      const firstInvalid = firstInvalidContactFormField(this.contactForm);
-      if (firstInvalid) {
-        const field = firstInvalid;
-        afterNextRender(() => focusContactFormField(field), { injector: this.injector });
-      }
+    const firstInvalid = firstInvalidContactFormField(this.contactForm);
+    if (!firstInvalid) {
+      return;
     }
+
+    afterNextRender(() => focusContactFormField(firstInvalid), { injector: this.injector });
+  }
+
+  private async sendContactInquiry(): Promise<void> {
+    const values = this.model();
+    const files = this.selectedFiles();
+    const imagePayloads = await filesToImagePayloads(files);
+    if (typeof imagePayloads === 'string') {
+      this.fileError.set(imagePayloads);
+      return;
+    }
+
+    const payload: ContactFormSubmitPayload = {
+      fullName: values.fullName.trim(),
+      streetAddress: values.streetAddress.trim(),
+      postalCode: values.postalCode.trim(),
+      phone: values.phone.trim(),
+      email: values.email.trim(),
+      subject: values.subject as ContactFormSubject,
+      description: values.description.trim(),
+      privacyAccepted: true,
+      images: imagePayloads,
+    };
+
+    this.submitting.set(true);
+    this.errorMessage.set(undefined);
+
+    const result = await this.gateway.submit(payload);
+    this.submitting.set(false);
+
+    if (result.ok) {
+      this.submitAttempted.set(false);
+      this.successMessage.set(CONTACT_FORM_SUCCESS_MESSAGE);
+      this.model.set({ ...EMPTY_CONTACT_FORM_VALUES });
+      this.contactForm().reset();
+      this.selectedFiles.set([]);
+      return;
+    }
+
+    this.errorMessage.set(result.message || CONTACT_FORM_ERROR_MESSAGE);
   }
 }

@@ -155,7 +155,7 @@
 
   /* Button */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 w-full sm:w-auto
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 w-full sm:w-auto
            min-h-11 px-6 py-3
            rounded-md font-semibold text-base sm:text-sm
            transition-transform duration-200 ease-standard
@@ -237,7 +237,7 @@
   .hero-form-card {
     --hero-form-surface-alpha: 50%;
     @apply flex flex-col rounded-lg border border-border bg-surface p-4 shadow-card
-           scroll-mt-24 lg:h-full lg:min-h-0 lg:p-5 lg:scroll-mt-28 lg:backdrop-blur-md;
+           scroll-mt-24 lg:p-5 lg:scroll-mt-28 lg:backdrop-blur-md;
   }
   @media (width >= 64rem) {
     .hero-form-card {

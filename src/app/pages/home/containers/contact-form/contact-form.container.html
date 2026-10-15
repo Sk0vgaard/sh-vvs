@@ -1,8 +1,21 @@
 <article [id]="SectionIds.Contact" class="hero-form-card" aria-labelledby="contact-form-heading">
   <header class="shrink-0">
     <p class="eyebrow">Kontakt</p>
-    <h2 id="contact-form-heading" class="mt-1 text-h3 text-ink-900">Skriv til os</h2>
-    <p class="mt-1 text-sm text-ink-600">{{ responsePromise }}</p>
+    <div class="mt-1 grid grid-cols-[minmax(0,1fr)_auto] items-stretch gap-4">
+      <div class="flex min-w-0 flex-col justify-center">
+        <h2 id="contact-form-heading" class="text-h3 text-ink-900">Skriv til os</h2>
+        <p class="mt-1 text-sm text-ink-600">{{ responsePromise }}</p>
+      </div>
+      <div class="flex min-w-0 items-stretch">
+        <sh-acute-callout
+          class="h-full w-full"
+          [headline]="acuteHeadline"
+          [phoneHref]="contact.phoneHref"
+          [callToAction]="acuteCallToAction"
+          [note]="acuteNote"
+        />
+      </div>
+    </div>
   </header>
 
   @if (successMessage(); as success) {
@@ -17,19 +30,12 @@
       [subjects]="subjects"
       [fileError]="fileError()"
       [selectedImageNames]="selectedImageNames()"
-      [imageHelp]="imageHelp"
       [submitting]="submitting()"
       [submitDisabled]="submitDisabled()"
       [validationSummary]="validationSummary()"
       [errorMessage]="errorMessage()"
       (filesSelected)="onFilesSelected($event)"
       (submitForm)="onSubmit($event)"
-    >
-      <sh-acute-callout
-        [title]="acuteTitle"
-        [phoneHref]="contact.phoneHref"
-        [phoneLabel]="'Ring ' + contact.phoneLabel"
-      />
-    </sh-contact-form>
+    />
   }
 </article>

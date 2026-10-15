@@ -13,7 +13,7 @@ import { type ContactFormSubjectOption } from '../../../../shared/models/contact
   selector: 'sh-contact-form',
   imports: [FormField, RouterLink],
   templateUrl: './contact-form.component.html',
-  host: { class: 'flex min-h-0 flex-1 flex-col' },
+  host: { class: 'flex flex-col' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
@@ -21,7 +21,6 @@ export class ContactFormComponent {
   readonly subjects = input.required<ContactFormSubjectOption[]>();
   readonly fileError = input<string | undefined>();
   readonly selectedImageNames = input<string[]>([]);
-  readonly imageHelp = input.required<string>();
   readonly submitting = input(false);
   readonly submitDisabled = input(false);
   readonly validationSummary = input<string | undefined>();
