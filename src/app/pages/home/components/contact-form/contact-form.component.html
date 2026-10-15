@@ -133,24 +133,27 @@
       <label class="field-label" for="contact-description">
         Beskrivelse <span class="text-danger" aria-hidden="true">*</span>
       </label>
-      <textarea
-        id="contact-description"
-        rows="3"
-        class="field"
-        aria-required="true"
-        aria-describedby="contact-description-hint"
-        [class.field-error]="showFieldError(contactForm().description())"
-        [formField]="contactForm().description"
-      ></textarea>
-      <p
-        id="contact-description-hint"
-        class="text-sm"
-        [class.text-ink-700]="descriptionMinMet()"
-        [class.text-danger]="!descriptionMinMet()"
-        aria-live="polite"
-      >
-        Mindst {{ descriptionMinLength }} tegn
-      </p>
+      <div class="relative">
+        <textarea
+          id="contact-description"
+          rows="2"
+          class="field resize-y pb-7"
+          aria-required="true"
+          aria-describedby="contact-description-hint"
+          [class.field-error]="showFieldError(contactForm().description())"
+          [formField]="contactForm().description"
+        ></textarea>
+        <p
+          id="contact-description-hint"
+          class="pointer-events-none absolute right-2.5 bottom-2 text-xs font-medium tabular-nums"
+          [class.text-ink-500]="descriptionMinMet()"
+          [class.text-danger]="!descriptionMinMet()"
+          aria-live="polite"
+        >
+          <span class="sr-only">Mindst {{ descriptionMinLength }} tegn. Nuværende: </span>
+          {{ descriptionLength() }}/{{ descriptionMinLength }}
+        </p>
+      </div>
       @if (showFieldError(contactForm().description()); as _) {
         @if (contactForm().description().errors()[0]; as error) {
           <p class="text-sm text-danger">{{ error.message }}</p>
