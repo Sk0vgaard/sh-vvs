@@ -1,34 +1,30 @@
-<section class="relative bg-navy-900">
-  <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-[56%]">
-    <picture class="block h-64 w-full sm:h-80 lg:h-full">
-      <source media="(max-width: 639px)" type="image/avif" srcset="/images/hero-480.avif" />
-      <source
-        type="image/avif"
-        srcset="/images/hero-800.avif 800w, /images/hero-1600.avif 1600w"
-        sizes="(min-width: 1024px) 56vw, 100vw"
-      />
-      <source media="(max-width: 639px)" type="image/webp" srcset="/images/hero-480.webp" />
-      <source
-        type="image/webp"
-        srcset="/images/hero-800.webp 800w, /images/hero-1600.webp 1600w"
-        sizes="(min-width: 1024px) 56vw, 100vw"
-      />
-      <img
-        src="/images/hero-800.webp"
-        alt="Moderne, mørkt badeværelse med rundt spejl og bruseniche"
-        width="1600"
-        height="994"
-        fetchpriority="high"
-        decoding="async"
-        class="h-full w-full object-cover"
-      />
-    </picture>
-    <div
-      class="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-navy-900 via-navy-900/15 to-transparent lg:block"
-    ></div>
-  </div>
+<section class="relative bg-navy-900 lg:overflow-hidden lg:bg-transparent">
+  <picture class="block h-64 w-full sm:h-80 lg:pointer-events-none lg:absolute lg:inset-0 lg:h-full lg:w-full">
+    <source media="(max-width: 639px)" type="image/avif" srcset="/images/hero-480.avif" />
+    <source
+      type="image/avif"
+      srcset="/images/hero-800.avif 800w, /images/hero-1600.avif 1600w"
+      sizes="(min-width: 1024px) 100vw, 100vw"
+    />
+    <source media="(max-width: 639px)" type="image/webp" srcset="/images/hero-480.webp" />
+    <source
+      type="image/webp"
+      srcset="/images/hero-800.webp 800w, /images/hero-1600.webp 1600w"
+      sizes="(min-width: 1024px) 100vw, 100vw"
+    />
+    <img
+      src="/images/hero-800.webp"
+      alt="Oliver Skovgaard og Nikolai Heide foran firmabil med Skovgaard &amp; Heide VVS-logo"
+      width="909"
+      height="900"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover object-center lg:object-[58%_center]"
+    />
+  </picture>
+  <div class="hero-banner-scrim pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true"></div>
 
-  <div class="shell relative lg:grid lg:grid-cols-2">
+  <div class="relative shell lg:grid lg:grid-cols-2">
     <div class="flex flex-col justify-center py-12 lg:min-h-[34rem] lg:py-20 lg:pr-12">
       <p class="eyebrow-on-dark">{{ eyebrow }}</p>
       <h1 class="mt-4 max-w-lg text-display-xl text-on-dark">{{ heading }}</h1>
